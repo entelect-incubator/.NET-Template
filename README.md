@@ -1,3 +1,11 @@
+ <img align="left" width="116" height="116" src="logo.png" />
+ 
+ # Clean Architecture Solution Template
+![.NET Core](https://github.com/entelect-incubator/.NET-CleanArchitecture/workflows/.NET%20Core/badge.svg)
+
+<br/>
+
+
 # Clean Architecture Solution Template
 
 This is a solution template for creating a backend framework following the principles of Clean Architecture. Create a new project based on this template by clicking the above Use this template button or download the solution.
