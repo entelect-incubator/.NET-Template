@@ -1,22 +1,70 @@
 ﻿namespace CleanArchitecture.Common.Models
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     public class Result
     {
-        internal Result(bool succeeded, IEnumerable<string> errors)
+        internal Result(bool succeeded, string error)
         {
             this.Succeeded = succeeded;
-            this.Errors = errors.ToArray();
+
+            this.Errors = new List<string>
+            {
+                error
+            };
+        }
+
+        internal Result(bool succeeded, List<string> errors)
+        {
+            this.Succeeded = succeeded;
+            this.Errors = errors;
         }
 
         public bool Succeeded { get; set; }
 
-        public string[] Errors { get; set; }
+        public List<string> Errors { get; set; }
 
-        public static Result Success() => new Result(true, new string[] { });
+        public static Result Success() => new Result(true, new List<string> { });
 
-        public static Result Failure(IEnumerable<string> errors) => new Result(false, errors);
+        public static Result Failure(List<string> errors) => new Result(false, errors);
+
+        public static Result Failure(string error) => new Result(false, error);
+    }
+
+    public class Result<T>
+    {
+        internal Result(bool succeeded, string error)
+        {
+            this.Succeeded = succeeded;
+            this.Errors = new List<string>
+            {
+                error
+            };
+        }
+
+        internal Result(bool succeeded, List<string> errors)
+        {
+            this.Succeeded = succeeded;
+            this.Errors = errors;
+        }
+
+        internal Result(bool succeeded, T data, List<string> errors)
+        {
+            this.Succeeded = succeeded;
+            this.Errors = errors;
+            this.Data = data;
+        }
+
+        public bool Succeeded { get; set; }
+
+        public T Data { get; set; }
+
+        public List<string> Errors { get; set; }
+
+        public static Result<T> Success(T data) => new Result<T>(true, data, new List<string> { });
+
+        public static Result<T> Failure(string error) => new Result<T>(false, error);
+
+        public static Result<T> Failure(List<string> errors) => new Result<T>(false, errors);
     }
 }
