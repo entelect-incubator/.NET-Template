@@ -1,7 +1,7 @@
  <img align="left" width="116" height="116" src="logo.png" />
  
  # Clean Architecture Solution Template
-![.NET Core](https://github.com/entelect-incubator/.NET-CleanArchitecture/workflows/.NET%20Core/badge.svg) [![.NET 5](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet5.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet5.yml)
+[![.NET 5](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet5.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet5.yml)
 
 <br/>
 
