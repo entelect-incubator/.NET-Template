@@ -14,8 +14,8 @@ What is [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs
 
 ## Technologies
 
-- .NET Core 3.1
-- Entity Framework Core 3.1
+- .NET 5
+- Entity Framework Core 5
 - MediatR
 - AutoMapper
 - FluentValidation
@@ -23,7 +23,7 @@ What is [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs
 
 ## Getting Started
 
-- [ ] Install the latest .NET Core SDK
+- [ ] Install the latest .NET 5 SDK
 
 Create a folder for your solution and copy the clean code solution into it.
 
@@ -49,7 +49,7 @@ Logic specific to the database layer.
 
 ### **Core**
 
-This layer contains all business logic. It is dependent on the core/domain layer, but has no dependencies on any other layer or project. This layer defines interfaces that are implemented by outside layers. For example, if the application need to access a notification service, a new interface would be added to application and an implementation would be created within infrastructure.
+This layer contains all business logic. It is dependent on the core/domain layer but has no dependencies on any other layer or project. This layer defines interfaces that are implemented by outside layers. For example, if the application needs to access a notification service, a new interface would be added to the application and implementation would be created within the infrastructure.
 
 ### **Infrastructure**
 
