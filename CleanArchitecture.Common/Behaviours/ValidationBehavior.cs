@@ -28,6 +28,7 @@
                     throw new ValidationException(failures);
                 }
             }
+
             return await next();
         }
     }

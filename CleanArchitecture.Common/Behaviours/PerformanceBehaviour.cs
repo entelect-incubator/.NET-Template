@@ -5,23 +5,17 @@
     using System.Threading.Tasks;
     using CleanArchitecture.Common.Interfaces;
     using MediatR;
-    using Microsoft.Extensions.Logging;
 
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly Stopwatch timer;
-        private readonly ILogger<TRequest> logger;
         private readonly ICurrentUserService currentUserService;
         private readonly IIdentityService identityService;
 
-        public PerformanceBehaviour(
-            ILogger<TRequest> logger,
-            ICurrentUserService currentUserService,
-            IIdentityService identityService)
+        public PerformanceBehaviour(ICurrentUserService currentUserService, IIdentityService identityService)
         {
             this.timer = new Stopwatch();
 
-            this.logger = logger;
             this.currentUserService = currentUserService;
             this.identityService = identityService;
         }
@@ -47,8 +41,7 @@
                     userName = await this.identityService.GetUserNameAsync(userId);
                 }
 
-                this.logger.LogWarning("CleanArchitecture Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
-                    requestName, elapsedMilliseconds, userId, userName, request);
+                Logging.Logging.LogInfo($"CleanArchitecture Long Running Request: {requestName} ({elapsedMilliseconds} milliseconds) {userId} {userName}", request);
             }
 
             return response;

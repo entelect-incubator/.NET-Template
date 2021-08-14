@@ -4,17 +4,14 @@
     using System.Threading.Tasks;
     using CleanArchitecture.Common.Interfaces;
     using MediatR.Pipeline;
-    using Microsoft.Extensions.Logging;
 
     public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
     {
-        private readonly ILogger logger;
         private readonly ICurrentUserService currentUserService;
         private readonly IIdentityService identityService;
 
-        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IIdentityService identityService)
+        public LoggingBehaviour(ICurrentUserService currentUserService, IIdentityService identityService)
         {
-            this.logger = logger;
             this.identityService = identityService;
             this.currentUserService = currentUserService;
         }
@@ -30,7 +27,7 @@
                 userName = await this.identityService.GetUserNameAsync(userId);
             }
 
-            this.logger.LogInformation("CleanArchitecture Request: {Name} {@UserId} {@UserName} {@Request}", requestName, userId, userName, request);
+            Logging.Logging.LogInfo($"CleanArchitecture Request: {requestName} {userId} {userName}", request);
         }
     }
 }
