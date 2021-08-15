@@ -8,7 +8,7 @@ namespace CleanArchitecture.DataAccess.Contracts
     {
         Task<T> GetAsync(int id);
 
-        Task<ListResult<T>> GetAllAsync(Entity<int> searchBase);
+        Task<ListResult<T>> GetAllAsync(T searchBase);
 
         Task<T> UpdateAsync(T entity);
 

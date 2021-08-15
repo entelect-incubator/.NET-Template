@@ -1,7 +1,9 @@
 ﻿namespace CleanArchitecture.Common.Entities
 {
-    public abstract class Entity<T> : IEntity<T>
+    using System;
+
+    public abstract class Entity : IEntity
     {
-        public T Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

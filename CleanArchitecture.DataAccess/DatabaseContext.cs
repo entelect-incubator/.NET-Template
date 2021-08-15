@@ -1,9 +1,8 @@
 ﻿namespace CleanArchitecture.DataAccess
 {
-    using CleanArchitecture.DataAccess.Contracts;
     using Microsoft.EntityFrameworkCore;
 
-    public class DatabaseContext : DbContext, IDatabaseContext
+    public class DatabaseContext : DbContext
     {
         public DatabaseContext()
         {

@@ -1,7 +1,9 @@
 ﻿namespace CleanArchitecture.Common.Entities
 {
-    public interface IEntity<T>
+    using System;
+
+    public interface IEntity
     {
-        T Id { get; set; }
+        Guid Id { get; set; }
     }
 }
