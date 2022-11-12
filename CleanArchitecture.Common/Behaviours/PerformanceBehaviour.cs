@@ -1,50 +1,27 @@
-﻿namespace CleanArchitecture.Common.Behaviours
+﻿namespace CleanArchitecture.Common.Behaviours;
+
+public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
 {
-    using System.Diagnostics;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using CleanArchitecture.Common.Interfaces;
-    using MediatR;
+    private readonly Stopwatch timer;
 
-    public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public PerformanceBehaviour() => timer = new Stopwatch();
+
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        private readonly Stopwatch timer;
-        private readonly ICurrentUserService currentUserService;
-        private readonly IIdentityService identityService;
+        timer.Start();
 
-        public PerformanceBehaviour(ICurrentUserService currentUserService, IIdentityService identityService)
+        var response = await next();
+
+        timer.Stop();
+
+        var elapsedMilliseconds = timer.ElapsedMilliseconds;
+
+        if (elapsedMilliseconds > 500)
         {
-            this.timer = new Stopwatch();
-
-            this.currentUserService = currentUserService;
-            this.identityService = identityService;
+            Logging.Logging.LogInfo($"CleanArchitecture Long Running Request: {typeof(TRequest).Name} ({elapsedMilliseconds} milliseconds)k", request);
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-        {
-            this.timer.Start();
-
-            var response = await next();
-
-            this.timer.Stop();
-
-            var elapsedMilliseconds = this.timer.ElapsedMilliseconds;
-
-            if (elapsedMilliseconds > 500)
-            {
-                var requestName = typeof(TRequest).Name;
-                var userId = this.currentUserService.UserId ?? string.Empty;
-                var userName = string.Empty;
-
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    userName = await this.identityService.GetUserNameAsync(userId);
-                }
-
-                Logging.Logging.LogInfo($"CleanArchitecture Long Running Request: {requestName} ({elapsedMilliseconds} milliseconds) {userId} {userName}", request);
-            }
-
-            return response;
-        }
+        return response;
     }
 }

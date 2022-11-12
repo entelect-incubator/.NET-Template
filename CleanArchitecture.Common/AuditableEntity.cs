@@ -1,15 +1,12 @@
-﻿namespace CleanArchitecture.Common
+﻿namespace CleanArchitecture.Common;
+
+public abstract class AuditableEntity
 {
-    using System;
+    public string CreatedBy { get; set; }
 
-    public abstract class AuditableEntity
-    {
-        public string CreatedBy { get; set; }
+    public DateTime Created { get; set; }
 
-        public DateTime Created { get; set; }
+    public string LastModifiedBy { get; set; }
 
-        public string LastModifiedBy { get; set; }
-
-        public DateTime? LastModified { get; set; }
-    }
+    public DateTime? LastModified { get; set; }
 }

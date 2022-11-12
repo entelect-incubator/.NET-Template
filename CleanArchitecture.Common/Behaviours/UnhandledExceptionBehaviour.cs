@@ -1,24 +1,19 @@
-﻿namespace CleanArchitecture.Common.Behaviours
+﻿namespace CleanArchitecture.Common.Behaviours;
+
+public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using MediatR;
-
-    public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        try
         {
-            try
-            {
-                return await next();
-            }
-            catch (Exception ex)
-            {
-                Logging.Logging.LogException(ex, request);
+            return await next();
+        }
+        catch (Exception ex)
+        {
+            Logging.Logging.LogException(ex, request);
 
-                throw;
-            }
+            throw;
         }
     }
 }

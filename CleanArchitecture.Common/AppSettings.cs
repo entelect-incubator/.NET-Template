@@ -1,6 +1,5 @@
-﻿namespace CleanArchitecture.Common
+﻿namespace CleanArchitecture.Common;
+
+public class AppSettings
 {
-    public class AppSettings
-    {
-    }
 }

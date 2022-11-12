@@ -1,7 +1,6 @@
 namespace CleanArchitecture.DataAccess.Contracts
 {
     using System.Threading.Tasks;
-    using CleanArchitecture.Common.Entities;
     using CleanArchitecture.Common.Models;
 
     public interface IDataAccess<T>

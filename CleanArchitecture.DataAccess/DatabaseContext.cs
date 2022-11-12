@@ -1,16 +1,13 @@
-﻿namespace CleanArchitecture.DataAccess
+﻿namespace CleanArchitecture.DataAccess;
+
+public class DatabaseContext : DbContext
 {
-    using Microsoft.EntityFrameworkCore;
-
-    public class DatabaseContext : DbContext
+    public DatabaseContext()
     {
-        public DatabaseContext()
-        {
-        }
+    }
 
-        public DatabaseContext(DbContextOptions<DbContext> options)
-            : base(options)
-        {
-        }
+    public DatabaseContext(DbContextOptions<DbContext> options)
+        : base(options)
+    {
     }
 }
