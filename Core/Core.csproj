@@ -29,7 +29,6 @@
         <Using Include="System.Reflection" />
         <Using Include="System.Threading" />
         <Using Include="System.Threading.Tasks" />
-        <Using Include="AutoMapper" />
         <Using Include="Common.Behaviours" />
         <Using Include="FluentValidation" />
         <Using Include="MediatR" />
