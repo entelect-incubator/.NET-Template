@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 8.x
+        dotnet-quality: 'preview'
+        cache: true
     - name: Install dependencies
       run: dotnet restore
     - name: Build
