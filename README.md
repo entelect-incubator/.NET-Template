@@ -2,7 +2,7 @@
  
  # Clean Architecture Solution Template
  
-[![.NET](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml)
+[![CI](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml)
 
 <br/>
 
