@@ -1,7 +1,8 @@
 cls 
 $path = Read-Host -Prompt 'Input your solution folder'
 cd $path 
-$oldstring = Read-Host -Prompt 'Input your current project name i.e. CleanArchitecture'
+
+$oldstring = Read-Host -Prompt 'Input your old project name'
 $newstring = Read-Host -Prompt 'Input your new project name'
 
 $files = Get-ChildItem -Path $path *.* -rec -file -exclude obj,debug,bin,*.msi,*.exe,*.dll,*.snk 

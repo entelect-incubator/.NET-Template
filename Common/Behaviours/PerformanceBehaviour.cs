@@ -1,25 +1,28 @@
-﻿namespace Common.Behaviours;
+namespace Common.Behaviours;
+
+using MediatR;
 
 public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly Stopwatch timer;
 
-    public PerformanceBehaviour() => timer = new Stopwatch();
+    public PerformanceBehaviour() => this.timer = new Stopwatch();
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        timer.Start();
+        this.timer.Restart();
 
         var response = await next();
 
-        timer.Stop();
+        this.timer.Stop();
 
-        var elapsedMilliseconds = timer.ElapsedMilliseconds;
+        var elapsedMilliseconds = this.timer.ElapsedMilliseconds;
 
         if (elapsedMilliseconds > 500)
         {
-            Logging.Logging.LogInfo($"CleanArchitecture Long Running Request: {typeof(TRequest).Name} ({elapsedMilliseconds} milliseconds)k", request);
+            var requestName = typeof(TRequest).Name;
+            Logging.Static.Logger.LogInfo("PerformanceBehaviour", $"Long Running Request: {requestName} ({elapsedMilliseconds} milliseconds)");
         }
 
         return response;

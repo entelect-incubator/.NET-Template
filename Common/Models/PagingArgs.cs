@@ -1,31 +1,48 @@
-﻿namespace Common.Models;
-
-public class PagingArgs
+namespace Common.Models;
+[ExcludeFromCodeCoverage]
+public sealed class PagingArgs
 {
-    private int limit = 20;
+    private int pageNumber = 1;
 
-    public static PagingArgs NoPaging => new PagingArgs { UsePaging = false };
+    private int pageSize = 20;
 
-    public static PagingArgs Default => new PagingArgs { UsePaging = true, Limit = 20, Offset = 0 };
+    public static PagingArgs NoPaging => new() { UsePaging = false };
 
-    public static PagingArgs FirstItem => new PagingArgs { UsePaging = true, Limit = 1, Offset = 0 };
+    public static PagingArgs Default => new() { UsePaging = true, PageSize = 20, PageNumber = 1 };
 
-    public int Offset { get; set; }
+    public static PagingArgs FirstItem => new() { UsePaging = true, PageSize = 20, PageNumber = 1 };
 
-    public int Limit
+    public int PageNumber
     {
-        get => this.limit;
+        get => this.pageNumber;
 
         set
         {
-            if (value == 0)
+            if (value < 1)
+            {
+                value = 1;
+            }
+
+            this.pageNumber = value;
+        }
+    }
+
+    public int PageSize
+    {
+        get => this.pageSize;
+
+        set
+        {
+            if (value < 1)
             {
                 value = 20;
             }
 
-            this.limit = value;
+            this.pageSize = value;
         }
     }
+
+    public int SkipAmount => (this.PageNumber - 1) * this.PageSize;
 
     public bool UsePaging { get; set; }
 }
