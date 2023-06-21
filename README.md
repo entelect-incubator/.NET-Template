@@ -52,6 +52,8 @@ The Database layer represents the SQL database layer. It contains logic specific
 
 The Tests layer contains all the unit tests for the application. It ensures the correctness and reliability of the codebase through automated testing.
 
+Also have included Benchmark testing and Load Testing using K6.io under the `LoadTesting` folder.
+
 ### **Providers**
 
 The Providers layer contains classes for accessing external resources such as file systems, web services, SMTP servers, and more. These classes are based on interfaces defined within the Core layer, enabling loose coupling and dependency inversion.
