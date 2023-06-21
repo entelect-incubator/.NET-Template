@@ -1,6 +1,4 @@
-namespace DataAccess;
-
-using Common.Entities.V1;
+﻿namespace DataAccess;
 
 public class DatabaseContext : DbContext
 {
@@ -8,15 +6,8 @@ public class DatabaseContext : DbContext
     {
     }
 
-    public DatabaseContext(DbContextOptions<DatabaseContext> options)
+    public DatabaseContext(DbContextOptions<DbContext> options)
         : base(options)
     {
-    }
-
-    public DbSet<Pizza> Samples { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfiguration(new PizzaMap());
     }
 }
