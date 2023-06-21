@@ -1,58 +1,63 @@
  <img align="left" width="116" height="116" src="logo.png" />
  
  # Clean Architecture Solution Template
+ 
 [![.NET 5](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet5.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet5.yml)
 
 <br/>
 
-This is a solution template for creating a backend framework following the principles of Clean Architecture. Create a new project based on this template by clicking the above Use this template button or download the solution.
-
-What is [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs#:~:text=The%20Command%20and%20Query%20Responsibility,performance%2C%20scalability%2C%20and%20security.)
+This is a solution template for creating a backend framework following the principles of Clean Architecture. It provides a layered structure that promotes separation of concerns and modularity, allowing for easier maintenance, scalability, and reusability. The template is designed to be used as a starting point for creating .NET applications and can be reused by different people.
 
 ## Technologies
 
-- .NET 5
-- Entity Framework Core 5
+The solution template incorporates the following technologies:
+
+- .NET 8
+- Entity Framework Core 8
 - MediatR
-- AutoMapper
+- FeatureManagement
+- Rate limiting
 - FluentValidation
+- Polly
+- NSwag
 - NUnit, FluentAssertions, Moq
 
 ## Getting Started
 
-- [ ] Install the latest .NET 5 SDK
+To get started with the solution template, follow these steps:
 
-Create a folder for your solution and copy the clean code solution into it.
-
-Run [RenameSolution.ps1](./RenameSolution.ps1) on the new solution folder to rename it to your project.
+- [ ] Install the latest .NET 8 SDK
+- [ ] Create a folder for your solution and copy the clean code solution into it.
+- [ ] Rename the Solution File on the new solution folder to your project.
 
 ## **Overview**
 
-### **Tests**
+### **Apis**
 
-This will contain all unit tests.
-
-### **Common**
-
-This will contain all entities, enums, exceptions, interfaces and types.
-
-### **Database**
-
-SQL database layer.
-
-### **Data Access**
-
-Logic specific to the database layer.
+This layer is dedicated to hosting Apis or other ASP.NET Core projects. It depends on both the Core and Infrastructure layers. However, the dependency on the Infrastructure layer is only for supporting dependency injection. Therefore, only the Startup.cs file should reference the Infrastructure layer.
 
 ### **Core**
 
-This layer contains all business logic. It is dependent on the core/domain layer but has no dependencies on any other layer or project. This layer defines interfaces that are implemented by outside layers. For example, if the application needs to access a notification service, a new interface would be added to the application and implementation would be created within the infrastructure.
+The Core layer contains all the business logic of the application. It depends on the core/domain layer but has no dependencies on any other layer or project. The Core layer defines interfaces that are implemented by the outside layers. For example, if the application needs to access a notification service, a new interface would be added to the Core layer, and the implementation would be created within the Infrastructure layer.
 
-### **Infrastructure**
+### **Common**
 
-This layer contains classes for accessing external resources such as file systems, web services, SMTP, and so on. These classes should be based on interfaces defined within the application layer.
+The Common layer contains entities, enums, exceptions, interfaces, and types that are shared across different layers of the application. It promotes code reuse and consistency.
 
-### **Apis**
+### **Database**
 
-This layer is for all Apis or other ASP.NET Core projects. This layer depends on both the Core and Infrastructure layers, however, the dependency on Infrastructure is only to support dependency injection. Therefore only Startup.cs should reference Infrastructure.
+The Database layer represents the SQL database layer. It contains logic specific to the database layer, such as data access, migrations, and database-specific configurations.
 
+### **Tests**
+
+The Tests layer contains all the unit tests for the application. It ensures the correctness and reliability of the codebase through automated testing.
+
+### **Providers**
+
+The Providers layer contains classes for accessing external resources such as file systems, web services, SMTP servers, and more. These classes are based on interfaces defined within the Core layer, enabling loose coupling and dependency inversion.
+
+## **Additional Resources**
+
+For more information about the Command and Query Responsibility Segregation (CQRS) pattern, refer to the [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs#:~:text=The%20Command%20and%20Query%20Responsibility,performance%2C%20scalability%2C%20and%20security.)
+
+Feel free to customize the solution template according to your specific requirements and extend it with additional features or technologies as needed.
