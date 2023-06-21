@@ -1,6 +1,5 @@
 namespace Common.Helpers;
 
-using Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
 public static class ApiResponseHelper

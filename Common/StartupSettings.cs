@@ -16,6 +16,6 @@ public static class StartupSettings
         var config = builder.Build();
         var startupConfiguration = config.GetSection("StartupConfiguration").Get<StartupConfiguration>();
 
-        return startupConfiguration;
+        return startupConfiguration ?? new StartupConfiguration();
     }
 }

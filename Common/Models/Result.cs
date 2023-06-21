@@ -78,6 +78,19 @@ public class Result
         ValidationErrors = validationErrors
     };
 
+    public static Result NotFound() => new()
+    {
+        IsError = false,
+        IsValidationError = false
+    };
+
+    public static Result NotFound(string message) => new()
+    {
+        IsError = false,
+        IsValidationError = false,
+        Message = message
+    };
+
     public void AddError(string error)
     {
         this.IsError = true;
@@ -181,6 +194,19 @@ public class Result<T>
         Message = message,
         IsValidationError = true,
         ValidationErrors = validationErrors
+    };
+
+    public static Result<T> NotFound() => new()
+    {
+        IsError = false,
+        IsValidationError = false
+    };
+
+    public static Result<T> NotFound(string message) => new()
+    {
+        IsError = false,
+        IsValidationError = false,
+        Message = message
     };
 
     public void AddData(T data)

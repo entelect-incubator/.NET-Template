@@ -11,7 +11,7 @@ public static class LoggerSetup
 {
     public static LoggerConfiguration LoggingConfiguration;
 
-    public static LoggerConfiguration ConfigureLogging(IServiceProvider services = null)
+    public static LoggerConfiguration ConfigureLogging(IServiceProvider? services = null)
     {
         if (LoggingConfiguration != null)
         {

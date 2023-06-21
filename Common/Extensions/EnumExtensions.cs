@@ -8,9 +8,7 @@ public static class EnumExtensions
     public static string GetDescription(this Enum value)
     {
         var fi = value.GetType().GetField(value.ToString());
-
-
-        return fi.GetCustomAttributes(typeof(DescriptionAttribute), false) is DescriptionAttribute[] attributes && attributes.Any() ? attributes.First().Description : value.ToString();
+        return fi.GetCustomAttributes(typeof(DescriptionAttribute), false) is DescriptionAttribute[] attributes && attributes.Length != 0 ? attributes.First().Description : value.ToString();
     }
 
     public static T GetEnumFromDescription<T>(this string description)
@@ -34,7 +32,7 @@ public static class EnumExtensions
 
     public static string GetValueAsString(this Enum element) => Convert.ToInt32(element).ToString();
 
-    public static string GetEnumMemberValue<T>(this T value)
+    public static string? GetEnumMemberValue<T>(this T value)
     where T : struct, IConvertible => typeof(T)
             .GetTypeInfo()
             .DeclaredMembers

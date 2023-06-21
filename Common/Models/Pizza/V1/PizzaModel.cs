@@ -6,7 +6,7 @@ public sealed class PizzaModel
 
     public string Name { get; set; }
 
-    public DateTime? DateCreated { get; set; }
+    public DateTimeOffset? DateCreated { get; set; }
 
     public bool? Disabled { get; set; }
 }

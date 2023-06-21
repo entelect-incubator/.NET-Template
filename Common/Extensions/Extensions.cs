@@ -1,7 +1,5 @@
 namespace Common.Extensions;
 
-using Common.Models;
-
 public static class Extensions
 {
     public static IQueryable<T> ApplyPaging<T>(this IQueryable<T> query, PagingArgs pagingArgs)

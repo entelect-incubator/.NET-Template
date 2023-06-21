@@ -18,12 +18,7 @@ public class PizzaDataAccess : BaseDataAccess<DatabaseContext>, IPizzaDataAccess
     public async Task<Result<PizzaModel>> Get(int id, CancellationToken cancellationToken = default)
     {
         var result = await GetQuery(this.DatabaseContext, id);
-        if (result == null)
-        {
-            return Result<PizzaModel>.Failure(PizzaErrors.NotFound);
-        }
-
-        return Result<PizzaModel>.Success(result.Map());
+        return result == null ? Result<PizzaModel>.NotFound(PizzaErrors.NotFound) : Result<PizzaModel>.Success(result.Map());
     }
 
     public async Task<ListResult<PizzaModel>> Search(PizzaSearchModel model, CancellationToken cancellationToken = default)
@@ -49,7 +44,7 @@ public class PizzaDataAccess : BaseDataAccess<DatabaseContext>, IPizzaDataAccess
         this.DatabaseContext.Samples.Add(entity);
         var outcome = await this.DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        return Result<PizzaModel>.Success(entity.Map());
+        return ProcessEFResult<PizzaModel>.Outcome(entity.Map(), outcome);
     }
 
     public async Task<Result<PizzaModel>> Update(int id, UpdatePizzaModel model, CancellationToken cancellationToken = default)
@@ -57,7 +52,7 @@ public class PizzaDataAccess : BaseDataAccess<DatabaseContext>, IPizzaDataAccess
         var findEntity = await this.DatabaseContext.Samples.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         if (findEntity == null)
         {
-            return Result<PizzaModel>.Failure(PizzaErrors.Update);
+            return Result<PizzaModel>.NotFound(PizzaErrors.Update);
         }
 
         if (!string.IsNullOrEmpty(model.Name))
@@ -73,7 +68,7 @@ public class PizzaDataAccess : BaseDataAccess<DatabaseContext>, IPizzaDataAccess
         this.DatabaseContext.Samples.Update(findEntity);
         var outcome = await this.DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        return Result<PizzaModel>.Success(findEntity.Map());
+        return ProcessEFResult<PizzaModel>.Outcome(findEntity.Map(), outcome);
     }
 
     public async Task<Result> Delete(int id, CancellationToken cancellationToken = default)
@@ -81,12 +76,12 @@ public class PizzaDataAccess : BaseDataAccess<DatabaseContext>, IPizzaDataAccess
         var entity = await this.DatabaseContext.Samples.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         if (entity == null)
         {
-            return Result.Failure(PizzaErrors.Delete);
+            return Result.NotFound(PizzaErrors.Delete);
         }
 
         this.DatabaseContext.Samples.Remove(entity);
         var outcome = await this.DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        return Result.Success(outcome.ToString());
+        return ProcessEFResult.Outcome(outcome);
     }
 }

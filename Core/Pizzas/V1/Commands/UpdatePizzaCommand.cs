@@ -9,14 +9,9 @@ public class UpdatePizzaCommand : IRequest<Result<PizzaModel>>
 
     public UpdatePizzaModel Model { get; set; }
 
-    public class UpdatePizzaCommandHandler : IRequestHandler<UpdatePizzaCommand, Result<PizzaModel>>
+    public class UpdatePizzaCommandHandler(IPizzaDataAccess dataAccess) : IRequestHandler<UpdatePizzaCommand, Result<PizzaModel>>
     {
-        private readonly IPizzaDataAccess dataAccess;
-
-        public UpdatePizzaCommandHandler(IPizzaDataAccess dataAccess)
-            => this.dataAccess = dataAccess;
-
         public async Task<Result<PizzaModel>> Handle(UpdatePizzaCommand request, CancellationToken cancellationToken = default)
-            => await this.dataAccess.Update(request.Id, request.Model, cancellationToken);
+            => await dataAccess.Update(request.Id, request.Model, cancellationToken);
     }
 }

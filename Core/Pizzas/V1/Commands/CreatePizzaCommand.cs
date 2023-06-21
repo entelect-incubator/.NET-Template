@@ -8,13 +8,8 @@ public class CreatePizzaCommand : IRequest<Result<PizzaModel>>
     public CreatePizzaModel Model { get; set; }
 }
 
-public class CreatePizzaCommandHandler : IRequestHandler<CreatePizzaCommand, Result<PizzaModel>>
+public class CreatePizzaCommandHandler(IPizzaDataAccess dataAccess) : IRequestHandler<CreatePizzaCommand, Result<PizzaModel>>
 {
-    private readonly IPizzaDataAccess dataAccess;
-
-    public CreatePizzaCommandHandler(IPizzaDataAccess dataAccess)
-        => this.dataAccess = dataAccess;
-
     public async Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken = default)
-        => await this.dataAccess.Save(request.Model, cancellationToken);
+        => await dataAccess.Save(request.Model, cancellationToken);
 }

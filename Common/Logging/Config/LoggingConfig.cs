@@ -16,6 +16,6 @@ public static class LoggingConfig
         var config = builder.Build();
         var loggingConfiguration = config.GetSection("LoggingConfiguration").Get<LoggingConfiguration>();
 
-        return loggingConfiguration;
+        return loggingConfiguration ?? new LoggingConfiguration();
     }
 }

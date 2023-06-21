@@ -1,4 +1,5 @@
 ﻿namespace Common.Models;
+
 [ExcludeFromCodeCoverage]
 public static class ProcessEFResult<T1>
 {
