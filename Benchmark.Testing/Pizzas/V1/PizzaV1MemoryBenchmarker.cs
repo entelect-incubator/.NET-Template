@@ -4,9 +4,10 @@ using Common.Models.Pizza.V1;
 using DataAccess.Contracts.Pizzas.V1;
 using DataAccess.Pizzas.V1;
 using Test.Setup;
+using Test.Setup.TestData.Pizza;
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net60, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net80, baseline: true)]
 [HtmlExporter]
 [RPlotExporter]
 public class PizzaV1MemoryBenchmarker : QueryTestBase

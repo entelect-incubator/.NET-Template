@@ -1,4 +1,4 @@
-﻿namespace GDE.Api.Test;
+﻿namespace Test.Setup.TestData.Pizza;
 
 using System.Collections.Generic;
 using Common.Entities.V1;
@@ -6,13 +6,11 @@ using Common.Models.Pizza.V1;
 
 public static class PizzaTestData
 {
-    public static Faker faker = new Faker();
-
     public static Pizza Pizza = new()
     {
         Id = 1,
         Disabled = false,
-        Name = faker.PickRandom(pizzas),
+        Name = "Pepperoni Pizza",
         DateCreated = DateTime.Now
     };
 
@@ -20,28 +18,18 @@ public static class PizzaTestData
     {
         Id = 1,
         Disabled = false,
-        Name = faker.PickRandom(pizzas),
+        Name = "Hawaiian Pizza",
         DateCreated = DateTime.Now
     };
 
     public static CreatePizzaModel Create = new()
     {
-        Name = faker.PickRandom(pizzas),
+        Name = "Margherita Pizza",
         Disabled = false
     };
 
     public static UpdatePizzaModel Update = new()
     {
-        Name = faker.PickRandom(pizzas),
-    };
-
-    private static readonly List<string> pizzas = new()
-    {
-        "Veggie Pizza",
-        "Pepperoni Pizza",
-        "Meat Pizza",
-        "Margherita Pizza",
-        "BBQ Chicken Pizza",
-        "Hawaiian Pizza"
+        Name = "BBQ Chicken Pizza",
     };
 }

@@ -1,10 +1,11 @@
-namespace Test.Samples.V1;
+namespace Test.Pizzas.V1;
 
 using Common.Models.Pizza.V1;
 using Core.Pizzas.V1.Commands;
 using Core.Pizzas.V1.Queries;
-using global::DataAccess.Contracts.Pizzas.V1;
-using global::DataAccess.Pizzas.V1;
+using DataAccess.Contracts.Pizzas.V1;
+using DataAccess.Pizzas.V1;
+using Test.Setup.TestData.Pizza;
 using static Core.Pizzas.V1.Commands.DeletePizzaCommand;
 using static Core.Pizzas.V1.Commands.UpdatePizzaCommand;
 using static Core.Pizzas.V1.Queries.GetAllPizzasQuery;

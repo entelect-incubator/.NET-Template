@@ -8,17 +8,17 @@ public static class SecurityApp
         {
             if (!context.Response.Headers.ContainsKey("X-Frame-Options"))
             {
-                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                context.Response.Headers.Append("X-Frame-Options", "SAMEORIGIN");
             }
 
             if (!context.Response.Headers.ContainsKey("Permissions-Policy"))
             {
-                context.Response.Headers.Add("Permissions-Policy", "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()");
+                context.Response.Headers.Append("Permissions-Policy", "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()");
             }
 
             if (!context.Response.Headers.ContainsKey("Feature-Policy"))
             {
-                context.Response.Headers.Add("Feature-Policy", "accelerometer 'none'; camera 'none'; microphone 'none';");
+                context.Response.Headers.Append("Feature-Policy", "accelerometer 'none'; camera 'none'; microphone 'none';");
             }
 
             await next();

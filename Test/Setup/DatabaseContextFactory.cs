@@ -11,7 +11,7 @@ public class DatabaseContextFactory
 
     public static DatabaseContext DBContextAsync()
     {
-        var options = new DbContextOptionsBuilder<DatabaseContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+        var options = new DbContextOptionsBuilder<DatabaseContext>().UseInMemoryDatabase("MEMORYDB").Options;
         var dbContext = new DatabaseContext(options);
         Seed(dbContext);
         return dbContext;

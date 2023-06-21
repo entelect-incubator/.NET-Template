@@ -1,8 +1,9 @@
-namespace Test.Samples.DataAccess;
+namespace Test.Pizzas.V1;
 
 using Common.Models.Pizza.V1;
-using global::DataAccess.Contracts.Pizzas.V1;
-using global::DataAccess.Pizzas.V1;
+using DataAccess.Contracts.Pizzas.V1;
+using DataAccess.Pizzas.V1;
+using Test.Setup.TestData.Pizza;
 
 [TestFixture]
 public class TestPizzaeV1DataAccess : QueryTestBase
