@@ -1,17 +1,17 @@
 namespace Api.StartupApp.Services;
 
 using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
 using Common.Behaviours;
 using Common.Models;
 using Correlate.DependencyInjection;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
 using Newtonsoft.Json.Serialization;
-using NSwag;
-using NSwag.Generation.Processors.Security;
 using Polly;
 using Polly.Extensions.Http;
 using Serilog.Enrichers.Correlate;
@@ -26,6 +26,18 @@ public static class CommonServices
             .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
             .AddNewtonsoftJson(x => x.SerializerSettings.ContractResolver = new DefaultContractResolver())
             .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+        ////Rate Limiting
+        services.AddRateLimiter(options =>
+        {
+            options.AddFixedWindowLimiter("Fixed", opt =>
+            {
+                opt.Window = TimeSpan.FromSeconds(3);
+                opt.PermitLimit = 3;
+                opt.QueueLimit = 2;
+                opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+            });
+        });
 
         ////COMPRESSION
         services.AddResponseCompression(options =>

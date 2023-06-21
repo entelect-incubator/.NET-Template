@@ -6,6 +6,11 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public static class CommonApp
 {
+    /// <summary>
+    /// Adds the common.
+    /// </summary>
+    /// <param name="app">The application.</param>
+    /// <returns>IApplicationBuilder</returns>
     public static IApplicationBuilder AddCommon(this IApplicationBuilder app)
     {
         ////Exception Handling and Logging
@@ -29,6 +34,9 @@ public static class CommonApp
         app.UseRouting();
         app.UseDefaultFiles();
         app.UseStaticFiles();
+
+        ////Rate Limiting
+        app.UseRateLimiter();
 
         ////Security
         if (StartupSettings.Current.IncludeAuthorization)
