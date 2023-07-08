@@ -1,0 +1,474 @@
+{
+  "x-generator": "NSwag v13.19.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": ".NET Clean Architecture API",
+    "version": "v1"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/Pizza/{id}": {
+      "get": {
+        "tags": [
+          "Pizza"
+        ],
+        "summary": "Get Pizza by Id.",
+        "operationId": "Pizza_Get",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "int.",
+            "format": "int32",
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "api-version",
+            "in": "header",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "A Task representing the asynchronous operation.",
+            "schema": {
+              "$ref": "#/definitions/ResultOfPizzaModel"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Pizza"
+        ],
+        "summary": "Update Pizza.",
+        "description": "Pizza request:\nPATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50\n{\n    \"name\" : \"sample 2\"\n}",
+        "operationId": "Pizza_Update",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id.",
+            "format": "int32",
+            "x-nullable": false
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "description": "Pizza Update Model.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePizzaModel"
+            },
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "api-version",
+            "in": "header",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "A Task representing the asynchronous operation.",
+            "schema": {
+              "$ref": "#/definitions/ResultOfPizzaModel"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pizza"
+        ],
+        "summary": "Remove Pizza by Id.",
+        "operationId": "Pizza_Delete",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id.",
+            "format": "int32",
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "api-version",
+            "in": "header",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "A Task representing the asynchronous operation.",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/Pizza/Search": {
+      "post": {
+        "tags": [
+          "Pizza"
+        ],
+        "summary": "Get all Pizzas.",
+        "operationId": "Pizza_Search",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "body",
+            "required": true,
+            "description": "Pizza Search Model",
+            "schema": {
+              "$ref": "#/definitions/GetAllPizzasQuery"
+            },
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "api-version",
+            "in": "header",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "A Task representing the asynchronous operation.",
+            "schema": {
+              "$ref": "#/definitions/ListResultOfPizzaModel"
+            }
+          }
+        }
+      }
+    },
+    "/Pizza": {
+      "post": {
+        "tags": [
+          "Pizza"
+        ],
+        "summary": "Create Pizza.",
+        "description": "Pizza request:\nPOST Pizza\n{\n    \"name\" : \"sample\"\n}",
+        "operationId": "Pizza_Create",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "command",
+            "in": "body",
+            "required": true,
+            "description": "Pizza Create Model.",
+            "schema": {
+              "$ref": "#/definitions/CreatePizzaCommand"
+            },
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "api-version",
+            "in": "header",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "A Task representing the asynchronous operation.",
+            "schema": {
+              "$ref": "#/definitions/ResultOfPizzaModel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ResultOfPizzaModel": {
+      "type": "object",
+      "required": [
+        "IsError",
+        "IsValidationError",
+        "Data",
+        "Message",
+        "Errors",
+        "ValidationErrors"
+      ],
+      "properties": {
+        "IsError": {
+          "type": "boolean"
+        },
+        "IsValidationError": {
+          "type": "boolean"
+        },
+        "Data": {
+          "$ref": "#/definitions/PizzaModel"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ValidationErrors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "PizzaModel": {
+      "type": "object",
+      "required": [
+        "Id",
+        "Name"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "DateCreated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Disabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ListResultOfPizzaModel": {
+      "type": "object",
+      "required": [
+        "IsError",
+        "IsValidationError",
+        "Data",
+        "Count",
+        "Message",
+        "Errors",
+        "ValidationErrors"
+      ],
+      "properties": {
+        "IsError": {
+          "type": "boolean"
+        },
+        "IsValidationError": {
+          "type": "boolean"
+        },
+        "Data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PizzaModel"
+          }
+        },
+        "Count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ValidationErrors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "GetAllPizzasQuery": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseSearchModel"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "DateCreated": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "Disabled": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "BaseSearchModel": {
+      "type": "object",
+      "required": [
+        "OrderBy",
+        "SortDirection",
+        "Ordering"
+      ],
+      "properties": {
+        "OrderBy": {
+          "type": "string"
+        },
+        "SortDirection": {
+          "$ref": "#/definitions/SortDirection"
+        },
+        "Ordering": {
+          "type": "string"
+        },
+        "PagingArgs": {
+          "$ref": "#/definitions/PagingArgs"
+        }
+      }
+    },
+    "SortDirection": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Ascending",
+        "Descending"
+      ],
+      "enum": [
+        "Ascending",
+        "Descending"
+      ]
+    },
+    "PagingArgs": {
+      "type": "object",
+      "required": [
+        "PageNumber",
+        "PageSize",
+        "SkipAmount",
+        "UsePaging"
+      ],
+      "properties": {
+        "PageNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "PageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SkipAmount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "UsePaging": {
+          "type": "boolean"
+        }
+      }
+    },
+    "CreatePizzaCommand": {
+      "type": "object",
+      "required": [
+        "Name",
+        "Disabled"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "UpdatePizzaModel": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Disabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "required": [
+        "IsError",
+        "IsValidationError",
+        "Message",
+        "Errors",
+        "ValidationErrors"
+      ],
+      "properties": {
+        "IsError": {
+          "type": "boolean"
+        },
+        "IsValidationError": {
+          "type": "boolean"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ValidationErrors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

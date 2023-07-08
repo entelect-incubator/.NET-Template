@@ -1,6 +1,6 @@
  <img align="left" width="116" height="116" src="logo.png" />
  
- # Clean Architecture Solution Template
+ # .NET Template
  
 [![CI](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml)
 
@@ -23,6 +23,11 @@ The solution template incorporates the following technologies:
 - NUnit, FluentAssertions, Moq
 
 ## Getting Started
+
+There are 2 different tempates to choose from
+
+1. Clean Template - Commands and Queries incluses DbContext directly, because DbContext is a UnitOfWork and DbSets are Repositories. **Recommened version*
+2. Template with DataAccess Layer to seperate Database logic to your business logic.
 
 To get started with the solution template, follow these steps:
 
