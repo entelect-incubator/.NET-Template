@@ -1,4 +1,4 @@
-name: CI
+name: Vertical Slice Architecture
 
 on:
   push:

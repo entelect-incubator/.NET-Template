@@ -1,4 +1,4 @@
-name: CI
+name: Layered Architecture with DataAccess
 
 on:
   push:
