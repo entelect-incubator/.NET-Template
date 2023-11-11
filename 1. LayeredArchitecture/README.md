@@ -24,7 +24,7 @@ The solution template incorporates the following technologies:
 
 There are 3 different architectural pattern templates to choose from
 
-1. Layered Architecture
+1. Layered Architecture - [![Layered Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml) - [![Layered Architecture with DataAccess](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml)
    1. Clean Template - Commands and Queries include DbContext directly because DbContext is a UnitOfWork and DbSets are Repositories. *Recommended version*
    2. Template with DataAccess Layer to separate Database logic from your business logic.
 

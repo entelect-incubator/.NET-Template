@@ -1,6 +1,6 @@
  # Clean Architecture Template
  
-[![CI](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/entelect-incubator/.NET-CleanArchitecture/actions/workflows/dotnet.yml)
+[![Clean Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/clean.yml)
 
 <br/>
 

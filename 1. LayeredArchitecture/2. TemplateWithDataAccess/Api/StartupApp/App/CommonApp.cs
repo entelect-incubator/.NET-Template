@@ -27,8 +27,8 @@ public static class CommonApp
         }
 
         ////SWAGGER
-        app.UseSwagger();
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "My API V1"));
+        app.UseOpenApi();
+        app.UseSwaggerUi3(c => c.AdditionalSettings.Add("displayRequestDuration", true));
         /*app.UseOpenApi();
          app.UseSwaggerUi3(c => c.AdditionalSettings.Add("displayRequestDuration", true));*/
 

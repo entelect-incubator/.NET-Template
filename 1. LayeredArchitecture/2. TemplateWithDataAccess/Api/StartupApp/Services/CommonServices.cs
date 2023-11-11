@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using Polly;
 using Polly.Extensions.Http;
@@ -84,23 +83,14 @@ public static class CommonServices
         ////SWAGGER
         if (StartupSettings.Current.IncludeSwaggerDoc)
         {
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerDocument(config =>
             {
-                c.SwaggerDoc(StartupSettings.Current.SwaggerDocVersion, new OpenApiInfo
+                config.PostProcess = document =>
                 {
-                    Title = StartupSettings.Current.SwaggerDocTitle,
-                    Version = StartupSettings.Current.SwaggerDocVersion
-                });
+                    document.Info.Version = StartupSettings.Current.SwaggerDocVersion;
+                    document.Info.Title = StartupSettings.Current.SwaggerDocTitle;
+                };
             });
-            /* services.AddSwaggerDocument(config =>
-             {
-                 config.GenerateEnumMappingDescription = true;
-                 config.PostProcess = document =>
-                 {
-                     document.Info.Version = StartupSettings.Current.SwaggerDocVersion;
-                     document.Info.Title = StartupSettings.Current.SwaggerDocTitle;
-                 };
-             });*/
         }
 
         ////COMMON
