@@ -1,0 +1,9 @@
+﻿global using System.ComponentModel;
+global using System.Reflection;
+global using Domain.Enums;
+global using Domain.Models.Shared;
+global using FluentValidation;
+global using Infrastructure;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
