@@ -23,4 +23,4 @@ jobs:
     - name: Install dependencies
       run: dotnet restore "./3. VerticalSliceArchitecture/.NET.VerticalSliceArchitecture.sln"
     - name: Build
-      run: dotnet build "../3. VerticalSliceArchitecture/.NET.VerticalSliceArchitecture.sln" --configuration Release --no-restore
+      run: dotnet build "./3. VerticalSliceArchitecture/.NET.VerticalSliceArchitecture.sln" --configuration Release --no-restore

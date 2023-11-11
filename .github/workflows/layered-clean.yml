@@ -23,4 +23,4 @@ jobs:
     - name: Install dependencies
       run: dotnet restore "./1. LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln"
     - name: Build
-      run: dotnet build "../1. LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln" --configuration Release --no-restore
+      run: dotnet build "./1. LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln" --configuration Release --no-restore
