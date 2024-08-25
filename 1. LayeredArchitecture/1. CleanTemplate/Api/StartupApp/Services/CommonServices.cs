@@ -71,10 +71,10 @@ public static class CommonServices
         if (StartupSettings.Current.IncludeCorrelationId)
         {
             services.AddCorrelate(options =>
-                options.RequestHeaders = new[]
-                {
+                options.RequestHeaders =
+                [
                     CORRELATIONHEADER,
-                }).AddCorrelationContextEnricher();
+                ]).AddCorrelationContextEnricher();
         }
 
         ////FEATURE FLAGS
@@ -85,7 +85,6 @@ public static class CommonServices
         {
             services.AddSwaggerDocument(config =>
             {
-                config.GenerateEnumMappingDescription = true;
                 config.PostProcess = document =>
                 {
                     document.Info.Version = StartupSettings.Current.SwaggerDocVersion;

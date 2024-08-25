@@ -28,7 +28,7 @@ public static class CommonApp
 
         ////SWAGGER
         app.UseOpenApi();
-        app.UseSwaggerUi3(c => c.AdditionalSettings.Add("displayRequestDuration", true));
+        app.UseSwaggerUi(c => c.AdditionalSettings.Add("displayRequestDuration", true));
 
         ////COMMON
         app.UseRouting();

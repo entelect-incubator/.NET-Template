@@ -84,7 +84,7 @@ public class LoggingMiddleware
     {
         request.EnableBuffering();
         var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-        await request.Body.ReadAsync(buffer);
+        await request.Body.ReadExactlyAsync(buffer);
         var bodyAsText = Encoding.UTF8.GetString(buffer);
         request.Body.Position = 0;
         return bodyAsText;

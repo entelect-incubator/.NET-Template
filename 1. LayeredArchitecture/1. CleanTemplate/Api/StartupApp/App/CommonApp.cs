@@ -14,7 +14,7 @@ public static class CommonApp
     public static IApplicationBuilder AddCommon(this IApplicationBuilder app)
     {
         ////Exception Handling and Logging
-        app.UseMiddleware(typeof(LoggingMiddleware));
+        app.UseMiddleware<LoggingMiddleware>();
 
         ////COMPRESSION
         app.UseResponseCompression();
@@ -28,7 +28,7 @@ public static class CommonApp
 
         ////SWAGGER
         app.UseOpenApi();
-        app.UseSwaggerUi3(c => c.AdditionalSettings.Add("displayRequestDuration", true));
+        app.UseSwaggerUi(c => c.AdditionalSettings.Add("displayRequestDuration", true));
 
         ////COMMON
         app.UseRouting();
@@ -59,12 +59,12 @@ public static class CommonApp
                 async ([FromServices] HealthCheckService healthCheckService, HttpContext context) =>
                 {
                     var report = await healthCheckService.CheckHealthAsync();
-                    Logger.LogInfo("Health check", Enum.GetName(typeof(HealthStatus), report.Status));
+                    Logger.LogInfo("Health check", Enum.GetName(report.Status));
                     context.Response.StatusCode = 200;
                     context.Response.ContentType = "application/json";
                     await context.Response.WriteAsync(JsonSerializer.Serialize(new
                     {
-                        Status = Enum.GetName(typeof(HealthStatus), report.Status),
+                        Status = Enum.GetName(report.Status),
                         Report = report
                     }));
                 });

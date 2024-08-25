@@ -4,7 +4,6 @@ using Common.Models.Pizza.V1;
 using Core;
 using Core.Pizzas.V1.Commands;
 using Core.Pizzas.V1.Queries;
-using Microsoft.EntityFrameworkCore;
 using Test.Setup.TestData.Pizza.V1;
 
 [TestFixture]
@@ -29,7 +28,7 @@ public class TestPizzaV1Core : QueryTestBase
 
         if (resultCreate.IsError)
         {
-            Assert.IsTrue(false);
+            Assert.That(false, Is.False);
         }
 
         this.model = resultCreate.Data;
@@ -41,7 +40,7 @@ public class TestPizzaV1Core : QueryTestBase
         var sutGet = new GetPizzaQueryHandler(this.databaseContext);
         var resultGet = await sutGet.Handle(new GetPizzaQuery { Id = this.model.Id }, CancellationToken.None);
 
-        Assert.IsTrue(resultGet?.Data != null);
+        Assert.That(resultGet?.Data, Is.Not.Null);
     }
 
     [Test]
@@ -50,11 +49,12 @@ public class TestPizzaV1Core : QueryTestBase
         var sutGetAll = new GetAllPizzaQueryHandler(this.databaseContext);
         var resultGetAll = await sutGetAll.Handle(new GetAllPizzasQuery { Name = this.model.Name }, CancellationToken.None);
 
-        Assert.IsTrue(resultGetAll?.Data.Count > 0);
+        Assert.That(resultGetAll?.Data.Count > 0, Is.True);
     }
 
     [Test]
-    public void SaveAsync() => Assert.IsTrue(this.model != null);
+    public void SaveAsync()
+        => Assert.That(this.model, Is.Not.Null);
 
     [Test]
     public async Task UpdateAsync()
@@ -70,7 +70,7 @@ public class TestPizzaV1Core : QueryTestBase
                 }
             }, CancellationToken.None);
 
-        Assert.IsTrue(!resultUpdate.IsError);
+        Assert.That(resultUpdate.IsError, Is.False);
     }
 
     [Test]
@@ -83,6 +83,6 @@ public class TestPizzaV1Core : QueryTestBase
                 Id = this.model.Id
             }, CancellationToken.None);
 
-        Assert.IsTrue(!outcomeDelete.IsError);
+        Assert.That(outcomeDelete.IsError, Is.False);
     }
 }

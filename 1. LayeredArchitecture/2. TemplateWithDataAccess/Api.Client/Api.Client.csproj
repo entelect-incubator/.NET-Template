@@ -23,7 +23,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="NSwag.MSBuild" Version="13.20.0">
+		<PackageReference Include="NSwag.MSBuild" Version="14.1.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(NO_RECURSE)' != 'true' ">
-		<Exec ConsoleToMSBuild="true" ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="NO_RECURSE=true" Command="$(NSwagExe_Net70) run Api.v1.nswag /variables:Configuration=Release">
+		<Exec ConsoleToMSBuild="true" ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="NO_RECURSE=true" Command="$(NSwagExe_Net80) run Api.v1.nswag /variables:Configuration=Release">
 			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
 			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
 		</Exec>

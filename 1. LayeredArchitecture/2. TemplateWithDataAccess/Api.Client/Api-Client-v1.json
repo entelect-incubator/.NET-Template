@@ -1,5 +1,5 @@
 {
-  "x-generator": "NSwag v13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "x-generator": "NSwag v14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))",
   "swagger": "2.0",
   "info": {
     "title": ".NET Clean Architecture API",
@@ -219,7 +219,6 @@
       "required": [
         "IsError",
         "IsValidationError",
-        "Data",
         "Message",
         "Errors",
         "ValidationErrors"

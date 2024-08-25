@@ -85,7 +85,6 @@ public static class CommonServices
         {
             services.AddSwaggerDocument(config =>
             {
-                config.GenerateEnumMappingDescription = true;
                 config.PostProcess = document =>
                 {
                     document.Info.Version = StartupSettings.Current.SwaggerDocVersion;
