@@ -10,31 +10,31 @@ This is a solution template for creating a backend framework following the princ
 
 The solution template incorporates the following technologies:
 
-- .NET 8
-- Entity Framework Core 8
-- MediatR
-- FeatureManagement
-- Rate limiting
-- FluentValidation
-- Polly
-- NSwag
-- NUnit, FluentAssertions, Moq
+-   .NET 9
+-   Entity Framework Core 9
+-   MediatR
+-   FeatureManagement
+-   Rate limiting
+-   FluentValidation
+-   Polly
+-   NSwag
+-   NUnit, FluentAssertions, Moq
 
 ## Getting Started
 
 There are 3 different architectural pattern templates to choose from
 
 1. Layered Architecture - [![Layered Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml) - [![Layered Architecture with DataAccess](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml)
-   1. Clean Template - Commands and Queries include DbContext directly because DbContext is a UnitOfWork and DbSets are Repositories. *Recommended version*
-   2. Template with DataAccess Layer to separate Database logic from your business logic.
+    1. Clean Template - Commands and Queries include DbContext directly because DbContext is a UnitOfWork and DbSets are Repositories. _Recommended version_
+    2. Template with DataAccess Layer to separate Database logic from your business logic.
 2. Clean Architecture - [![Clean Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/clean.yml)
-3. Vertical Slice Architecture *New* - [![Vertical Slice Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/vertical-slice.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/vertical-slice.yml)
+3. Vertical Slice Architecture _New_ - [![Vertical Slice Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/vertical-slice.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/vertical-slice.yml)
 
 To get started with the solution template, follow these steps:
 
-- [ ] Install the latest .NET 8 SDK
-- [ ] Create a folder for your solution and copy the clean code solution into it.
-- [ ] Rename the Solution File on the new solution folder for your project.
+-   [ ] Install the latest .NET 9 SDK
+-   [ ] Create a folder for your solution and copy the clean code solution into it.
+-   [ ] Rename the Solution File on the new solution folder for your project.
 
 ## **Overview**
 
