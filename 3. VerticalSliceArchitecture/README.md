@@ -10,15 +10,15 @@ Vertical Slice Architecture, often associated with Domain-Driven Design and micr
 
 The solution template incorporates the following technologies:
 
-- .NET 8
-- Entity Framework Core 8
-- MediatR
-- FeatureManagement
-- Rate limiting
-- FluentValidation
-- Polly
-- NSwag
-- NUnit, FluentAssertions, NSubstitute
+-   .NET 9
+-   Entity Framework Core 9
+-   MediatR
+-   FeatureManagement
+-   Rate limiting
+-   FluentValidation
+-   Polly
+-   NSwag
+-   NUnit, FluentAssertions, NSubstitute
 
 ## Getting Started
 

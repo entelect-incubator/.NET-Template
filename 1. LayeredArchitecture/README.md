@@ -30,7 +30,7 @@ There are 3 different architectural pattern templates to choose from
 
 To get started with the solution template, follow these steps:
 
--   [ ] Install the latest .NET 8 SDK
+-   [ ] Install the latest .NET 9 SDK
 -   [ ] Create a folder for your solution and copy the clean code solution into it.
 -   [ ] Rename the Solution File on the new solution folder for your project.
 

@@ -1,5 +1,5 @@
- # Clean Architecture Template
- 
+# Clean Architecture Template
+
 [![Clean Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/clean.yml)
 
 <br/>
@@ -10,23 +10,23 @@ Clean Architecture, pioneered by software architecture expert Robert C. Martin, 
 
 The solution template incorporates the following technologies:
 
-- .NET 8
-- Entity Framework Core 8
-- MediatR
-- FeatureManagement
-- Rate limiting
-- FluentValidation
-- Polly
-- NSwag
-- NUnit, FluentAssertions, NSubstitute
+-   .NET 9
+-   Entity Framework Core 9
+-   MediatR
+-   FeatureManagement
+-   Rate limiting
+-   FluentValidation
+-   Polly
+-   NSwag
+-   NUnit, FluentAssertions, NSubstitute
 
 ## Getting Started
 
 To get started with the solution template, follow these steps:
 
-- [ ] Install the latest .NET 8 SDK
-- [ ] Create a folder for your solution and copy the clean code solution into it.
-- [ ] Rename the Solution File on the new solution folder for your project.
+-   [ ] Install the latest .NET 9 SDK
+-   [ ] Create a folder for your solution and copy the clean code solution into it.
+-   [ ] Rename the Solution File on the new solution folder for your project.
 
 ## **Overview**
 
