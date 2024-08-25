@@ -1,6 +1,6 @@
- # Layered Architecture Template
- 
- [![Layered Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml)  [![Layered Architecture with DataAccess](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml)
+# Layered Architecture Template
+
+[![Layered Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered-clean.yml) [![Layered Architecture with DataAccess](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/layered.yml)
 
 <br/>
 
@@ -10,29 +10,29 @@ Layered architecture organizes a system into distinct, modular layers, each resp
 
 The solution template incorporates the following technologies:
 
-- .NET 8
-- Entity Framework Core 8
-- MediatR
-- FeatureManagement
-- Rate limiting
-- FluentValidation
-- Polly
-- NSwag
-- NUnit, FluentAssertions, NSubstitute
+-   .NET 9
+-   Entity Framework Core 9
+-   MediatR
+-   FeatureManagement
+-   Rate limiting
+-   FluentValidation
+-   Polly
+-   NSwag
+-   NUnit, FluentAssertions, NSubstitute
 
 ## Getting Started
 
 There are 3 different architectural pattern templates to choose from
 
 1. Layered Architecture
-   1. Clean Template - Commands and Queries include DbContext directly because DbContext is a UnitOfWork and DbSets are Repositories. *Recommended version*
-   2. Template with DataAccess Layer to separate Database logic from your business logic.
+    1. Clean Template - Commands and Queries include DbContext directly because DbContext is a UnitOfWork and DbSets are Repositories. _Recommended version_
+    2. Template with DataAccess Layer to separate Database logic from your business logic.
 
 To get started with the solution template, follow these steps:
 
-- [ ] Install the latest .NET 8 SDK
-- [ ] Create a folder for your solution and copy the clean code solution into it.
-- [ ] Rename the Solution File on the new solution folder for your project.
+-   [ ] Install the latest .NET 8 SDK
+-   [ ] Create a folder for your solution and copy the clean code solution into it.
+-   [ ] Rename the Solution File on the new solution folder for your project.
 
 ## **Overview**
 
