@@ -1,0 +1,27 @@
+namespace Core.Pizzas.V1.Commands;
+
+using Core.Pizzas.V1.Entities.V1;
+using Core.Pizzas.V1.Mappers;
+using Core.Pizzas.V1.Models;
+
+public sealed class CreatePizzaCommand : IRequest<Result<PizzaModel>>
+{
+    public string Name { get; set; }
+}
+
+public struct CreatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<CreatePizzaCommand, Result<PizzaModel>>
+{
+    public async readonly Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken = default)
+    {
+        var entity = new Pizza()
+        {
+            Name = request.Name,
+            Disabled = false,
+            DateCreated = DateTime.UtcNow
+        };
+        databaseContext.Pizzas.Add(entity);
+        var outcome = await databaseContext.SaveChangesAsync(cancellationToken);
+
+        return ProcessEFResult<PizzaModel>.Outcome(entity.Map(), outcome);
+    }
+}
