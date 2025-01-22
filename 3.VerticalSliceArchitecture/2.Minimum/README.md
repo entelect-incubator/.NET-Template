@@ -41,3 +41,5 @@ The Common layer contains extensions, middleware, helpers, logging, and types th
 The Tests layer contains all the unit tests for the application. It ensures the correctness and reliability of the codebase through automated testing.
 
 Also have included Benchmark testing and Load Testing using K6.io under the `LoadTesting` folder.
+
+[View Test Coverage Report](https://entelect-incubator.github.io/.NET-Template/)

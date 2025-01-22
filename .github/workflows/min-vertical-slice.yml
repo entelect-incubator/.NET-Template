@@ -46,6 +46,22 @@ jobs:
                     "-targetdir:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html" \
                     -reporttypes:Html
 
+            # Rename report index.html and create main index.html
+            - name: Organize Reports
+              run: |
+                  mkdir -p reports
+                  # Rename the HTML report
+                  mv 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/index.html reports/vertical-min-test-results.html
+
+                  # Generate main index.html
+                  echo "<!DOCTYPE html>" > reports/index.html
+                  echo "<html><head><title>Test Reports</title></head><body>" >> reports/index.html
+                  echo "<h1>Test Reports</h1>" >> reports/index.html
+                  echo "<ul>" >> reports/index.html
+                  echo "<li><a href='vertical-min-test-results.html'>Vertical Slice Minimum Test Results</a></li>" >> reports/index.html
+                  echo "</ul>" >> reports/index.html
+                  echo "</body></html>" >> reports/index.html
+
             # Upload coverage HTML report as artifact
             - name: Upload HTML Report Artifact
               uses: actions/upload-artifact@v4
@@ -64,5 +80,5 @@ jobs:
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html
+                  publish_dir: ./reports
                   publish_branch: gh-pages
