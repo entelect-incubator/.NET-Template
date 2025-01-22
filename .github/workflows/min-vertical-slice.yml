@@ -50,6 +50,7 @@ jobs:
             - name: Organize Reports
               run: |
                   mkdir -p reports
+                  mkdir -p reports/vertical-min-test-results
                   # Copy the entire HTML report directory
                   cp -r 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/* reports/vertical-min-test-results/
 
