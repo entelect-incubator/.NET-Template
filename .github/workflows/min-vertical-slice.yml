@@ -24,3 +24,37 @@ jobs:
       run: dotnet restore "./3. VerticalSliceArchitecture/2. Minimum/.NET.VerticalSliceArchitecture.Minimum.sln"
     - name: Build
       run: dotnet build "./3. VerticalSliceArchitecture/2. Minimum/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
+    # Run the tests and collect code coverage
+    - name: Run Tests and Collect Code Coverage
+      run: |
+        dotnet test ./Test/Test.csproj --no-build --collect:"XPlat Code Coverage" \
+          /p:CollectCoverage=true \
+          /p:CoverletOutputFormat=cobertura \
+          /p:CoverletOutput="./TestResults/" \
+          /p:IsBenchmarkProject=false
+
+    # Install ReportGenerator (if necessary)
+    - name: Install ReportGenerator
+      run: |
+        dotnet tool install --global dotnet-reportgenerator-globaltool
+
+    # Generate HTML report from Cobertura XML
+    - name: Generate HTML Coverage Report
+      run: |
+        reportgenerator "-reports:./TestResults/coverage.cobertura.xml" \
+          "-targetdir:./TestResults/html" \
+          -reporttypes:HTML
+
+    # Upload coverage HTML report as artifact
+    - name: Upload HTML Report Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: ./TestResults/html/
+
+    # Upload Cobertura XML as artifact (optional)
+    - name: Upload Cobertura Report Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cobertura-report
+        path: ./TestResults/coverage.cobertura.xml
