@@ -30,7 +30,7 @@ jobs:
         dotnet test VerticalSliceArchitecture/2. Minimum/Test/Test.csproj --no-build --collect:"XPlat Code Coverage" \
           /p:CollectCoverage=true \
           /p:CoverletOutputFormat=cobertura \
-          /p:CoverletOutput="./TestResults/" \
+          /p:CoverletOutput="VerticalSliceArchitecture/2. Minimum/Test/TestResults/" \
           /p:IsBenchmarkProject=false \
           --verbosity detailed
 
