@@ -44,7 +44,7 @@ jobs:
               run: |
                   reportgenerator "-reports:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/*/coverage.cobertura.xml" \
                     "-targetdir:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html" \
-                    -reporttypes:HTML
+                    -reporttypes:Html
 
             # Upload coverage HTML report as artifact
             - name: Upload HTML Report Artifact
@@ -59,3 +59,10 @@ jobs:
               with:
                   name: cobertura-report
                   path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html
+                  publish_branch: main
