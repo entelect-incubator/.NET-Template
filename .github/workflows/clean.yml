@@ -21,6 +21,6 @@ jobs:
           9.x
         include-prerelease: true
     - name: Install dependencies
-      run: dotnet restore "./2. CleanArchitecture/.NET.CleanArchitecture.sln"
+      run: dotnet restore "./2.CleanArchitecture/.NET.CleanArchitecture.sln"
     - name: Build
-      run: dotnet build "./2. CleanArchitecture/.NET.CleanArchitecture.sln" --configuration Release --no-restore
+      run: dotnet build "./2.CleanArchitecture/.NET.CleanArchitecture.sln" --configuration Release --no-restore

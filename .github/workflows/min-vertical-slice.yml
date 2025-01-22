@@ -21,9 +21,9 @@ jobs:
           9.x
         include-prerelease: true
     - name: Install dependencies
-      run: dotnet restore "./3. VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln"
+      run: dotnet restore "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln"
     - name: Build
-      run: dotnet build "./3. VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
+      run: dotnet build "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
     # Run the tests and collect code coverage
     - name: Run Tests and Collect Code Coverage
       run: |
