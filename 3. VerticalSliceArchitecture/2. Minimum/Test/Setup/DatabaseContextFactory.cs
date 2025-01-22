@@ -1,6 +1,6 @@
 namespace Test.Setup;
 
-using Core;
+using global::Core;
 using Microsoft.EntityFrameworkCore;
 
 public class DatabaseContextFactory

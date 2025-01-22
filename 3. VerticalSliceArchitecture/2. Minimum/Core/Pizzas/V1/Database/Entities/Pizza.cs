@@ -1,4 +1,4 @@
-namespace Core.Pizzas.V1.Database.Entities.V1;
+namespace Core.Pizzas.V1.Database.Entities;
 
 public sealed class Pizza
 {

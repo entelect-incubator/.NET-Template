@@ -1,7 +1,7 @@
 namespace Core;
 
 using Common.Entities.V1;
-using Core.EFMapping;
+using Core.Database.EFMapping;
 
 public class DatabaseContext : DbContext
 {
@@ -16,5 +16,6 @@ public class DatabaseContext : DbContext
 
     public DbSet<Pizza> Pizzas { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfiguration(new PizzaMap());
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        => modelBuilder.ApplyConfiguration(new PizzaMap());
 }

@@ -25,7 +25,7 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
     [Benchmark]
     public async Task TestCast()
     {
-        var sutCast = new CreatePizzaCommandHandler(this.Context);
+        var sutCast = new CreatePizzaCommandHandler(Context);
         var resultCast = await sutCast.Handle(new CreatePizzaCommand()
         {
             Name = PizzaTestData.Create.Name
@@ -33,7 +33,7 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
 
         if (!resultCast.IsError)
         {
-            var sutGet = new GetAllPizzasQueryHandler(this.Context);
+            var sutGet = new GetAllPizzasQueryHandler(Context);
         }
     }
 }

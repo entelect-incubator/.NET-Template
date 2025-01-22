@@ -1,6 +1,6 @@
 ﻿namespace Core.Pizzas.V1.Mappers;
 
-using Core.Pizzas.V1.Database.Entities.V1;
+using Core.Pizzas.V1.Database.Entities;
 using Core.Pizzas.V1.Models;
 using Riok.Mapperly.Abstractions;
 

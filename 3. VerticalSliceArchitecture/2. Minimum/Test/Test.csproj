@@ -10,26 +10,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
-		<PackageReference Include="Bogus" Version="35.6.1" />
-		<PackageReference Include="Correlate.AspNetCore" Version="6.0.0" />
-		<PackageReference Include="coverlet.collector" Version="6.0.4">
+		<PackageReference Include="coverlet.collector" Version="6.0.2">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="coverlet.msbuild" Version="6.0.4">
+		<PackageReference Include="coverlet.msbuild" Version="6.0.2">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.1" />
-		<PackageReference Include="NSwag.AspNetCore" Version="14.2.0" />
-		<PackageReference Include="nunit" Version="4.3.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.1" />
+		<PackageReference Include="nunit" Version="4.2.1" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -40,4 +32,10 @@
 	<ItemGroup>
 	  <Folder Include="TestResults\" />
 	</ItemGroup>
+
+	<Target Name="RunCustomBuildSteps" AfterTargets="Build">
+		<Exec Command="dotnet tool list --global | findstr dotnet-reportgenerator-globaltool || dotnet tool install --global dotnet-reportgenerator-globaltool" />
+		<Exec Command="dotnet test ../Test/Test.csproj --no-build --collect:&quot;XPlat Code Coverage&quot; /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude='[xunit*]\*' /p:CoverletOutput='./TestResults/' /p:IsBenchmarkProject=false" />
+		<Exec Command="reportgenerator -reports:./TestResults/coverage.cobertura.xml -targetdir:./TestResults/html -reporttypes:HTML;" />
+	</Target>
 </Project>

@@ -1,6 +1,6 @@
 namespace Core.Pizzas.V1.Database.Filters;
 
-using Core.Pizzas.V1.Database.Entities.V1;
+using Core.Pizzas.V1.Database.Entities;
 
 public static class PizzaFilter
 {

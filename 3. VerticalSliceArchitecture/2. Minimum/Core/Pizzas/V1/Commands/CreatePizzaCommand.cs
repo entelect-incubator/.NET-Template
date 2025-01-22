@@ -1,6 +1,6 @@
 namespace Core.Pizzas.V1.Commands;
 
-using Core.Pizzas.V1.Database.Entities.V1;
+using Core.Pizzas.V1.Database.Entities;
 using Core.Pizzas.V1.Mappers;
 using Core.Pizzas.V1.Models;
 
@@ -11,7 +11,7 @@ public sealed class CreatePizzaCommand : IRequest<Result<PizzaModel>>
 
 public struct CreatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<CreatePizzaCommand, Result<PizzaModel>>
 {
-    public async readonly Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken = default)
+    public readonly async Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken = default)
     {
         var entity = new Pizza()
         {

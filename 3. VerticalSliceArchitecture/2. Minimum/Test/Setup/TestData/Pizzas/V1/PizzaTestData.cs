@@ -1,7 +1,7 @@
 ﻿namespace Test.Setup.TestData.Pizzas.V1;
 
 using Core.Pizzas.V1.Commands;
-using Core.Pizzas.V1.Database.Entities.V1;
+using Core.Pizzas.V1.Database.Entities;
 using Core.Pizzas.V1.Models;
 
 public static class PizzaTestData
@@ -25,5 +25,10 @@ public static class PizzaTestData
     public readonly static CreatePizzaCommand Create = new()
     {
         Name = "Margherita ",
+    };
+
+    public readonly static UpdatePizzaModel Update = new()
+    {
+        Name = "BBQ Chicken Pizza",
     };
 }
