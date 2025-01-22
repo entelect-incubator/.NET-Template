@@ -18,7 +18,7 @@ The solution template incorporates the following technologies:
 -   FluentValidation
 -   Polly
 -   NSwag
--   NUnit, FluentAssertions, NSubstitute
+-   NUnit
 
 ## Getting Started
 

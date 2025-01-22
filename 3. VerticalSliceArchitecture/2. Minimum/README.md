@@ -20,7 +20,7 @@ The solution template incorporates the following technologies:
 -   NSwag
 -   Endpoints
 -   Serilog
--   NUnit, FluentAssertions, NSubstitute
+-   NUnit
 
 ## Getting Started
 
