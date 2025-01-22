@@ -1,6 +1,6 @@
 # Vertical Slice Minimum Template
 
-[![Vertical Slice Minimum Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/vertical-slice.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml)
+[![Vertical Slice Minimum Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml)
 
 <br/>
 
