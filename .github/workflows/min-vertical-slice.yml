@@ -1,61 +1,60 @@
 name: Vertical Slice Minimum Architecture
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v1
+              with:
+                  dotnet-version: |
+                      8.x
+                      9.x
+                  include-prerelease: true
+            - name: Install dependencies
+              run: dotnet restore "./3.3.VerticalSliceArchitecture/2.Minimum/.NET.3.VerticalSliceArchitecture.Minimum.sln"
+            - name: Build
+              run: dotnet build "./3.3.VerticalSliceArchitecture/2.Minimum/.NET.3.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
+            # Run the tests and collect code coverage
+            - name: Run Tests and Collect Code Coverage
+              run: |
+                  dotnet test 3.VerticalSliceArchitecture/2.Minimum/Test/Test.csproj --no-build --collect:"XPlat Code Coverage" \
+                    /p:CollectCoverage=true \
+                    /p:CoverletOutputFormat=cobertura \
+                    /p:CoverletOutput="3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/" \
+                    /p:IsBenchmarkProject=false \
+                    --verbosity detailed
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: |
-          8.x
-          9.x
-        include-prerelease: true
-    - name: Install dependencies
-      run: dotnet restore "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln"
-    - name: Build
-      run: dotnet build "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
-    # Run the tests and collect code coverage
-    - name: Run Tests and Collect Code Coverage
-      run: |
-        dotnet test VerticalSliceArchitecture/2.Minimum/Test/Test.csproj --no-build --collect:"XPlat Code Coverage" \
-          /p:CollectCoverage=true \
-          /p:CoverletOutputFormat=cobertura \
-          /p:CoverletOutput="VerticalSliceArchitecture/2.Minimum/Test/TestResults/" \
-          /p:IsBenchmarkProject=false \
-          --verbosity detailed
+            # Install ReportGenerator (if necessary)
+            - name: Install ReportGenerator
+              run: |
+                  dotnet tool install --global dotnet-reportgenerator-globaltool
 
-    # Install ReportGenerator (if necessary)
-    - name: Install ReportGenerator
-      run: |
-        dotnet tool install --global dotnet-reportgenerator-globaltool
+            # Generate HTML report from Cobertura XML
+            - name: Generate HTML Coverage Report
+              run: |
+                  reportgenerator "-reports:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml" \
+                    "-targetdir:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html" \
+                    -reporttypes:HTML
 
-    # Generate HTML report from Cobertura XML
-    - name: Generate HTML Coverage Report
-      run: |
-        reportgenerator "-reports:VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml" \
-          "-targetdir:VerticalSliceArchitecture/2.Minimum/Test/TestResults/html" \
-          -reporttypes:HTML
+            # Upload coverage HTML report as artifact
+            - name: Upload HTML Report Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: coverage-report
+                  path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/
 
-    # Upload coverage HTML report as artifact
-    - name: Upload HTML Report Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-report
-        path: VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/
-
-    # Upload Cobertura XML as artifact (optional)
-    - name: Upload Cobertura Report Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: cobertura-report
-        path: VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml
+            # Upload Cobertura XML as artifact (optional)
+            - name: Upload Cobertura Report Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: cobertura-report
+                  path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml
