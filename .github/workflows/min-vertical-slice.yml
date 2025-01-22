@@ -31,6 +31,7 @@ jobs:
                     /p:CoverletOutputFormat=cobertura \
                     /p:CoverletOutput="3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/" \
                     /p:IsBenchmarkProject=false \
+                    /p:Configuration=Release \
                     --verbosity detailed
 
             # Install ReportGenerator (if necessary)
