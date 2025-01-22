@@ -50,8 +50,11 @@ jobs:
             - name: Organize Reports
               run: |
                   mkdir -p reports
-                  # Rename the HTML report
-                  mv 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/index.html reports/vertical-min-test-results.html
+                  # Copy the entire HTML report directory
+                  cp -r 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html reports/vertical-min-test-results
+
+                  # Rename main index.html
+                  mv reports/vertical-min-test-results/index.html reports/vertical-min-test-results.html
 
                   # Generate main index.html
                   echo "<!DOCTYPE html>" > reports/index.html
