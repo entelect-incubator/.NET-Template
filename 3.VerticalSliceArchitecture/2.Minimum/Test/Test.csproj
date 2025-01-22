@@ -33,9 +33,9 @@
 	  <Folder Include="TestResults\" />
 	</ItemGroup>
 
-	<Target Name="RunCustomBuildSteps" AfterTargets="Build">
+	<Target Name="RunCustomBuildSteps" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="dotnet tool list --global | findstr dotnet-reportgenerator-globaltool || dotnet tool install --global dotnet-reportgenerator-globaltool" />
-		<Exec Command="dotnet test ../Test/Test.csproj --no-build --collect:&quot;XPlat Code Coverage&quot; /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude='[xunit*]\*' /p:CoverletOutput='./TestResults/' /p:IsBenchmarkProject=false" />
+		<Exec Command="dotnet test ../Test/Test.csproj --no-build --collect:&quot;XPlat Code Coverage&quot; /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=&quot;[xunit*]\*&quot; /p:CoverletOutput=&quot;./TestResults/&quot; /p:IsBenchmarkProject=false" />
 		<Exec Command="reportgenerator -reports:./TestResults/coverage.cobertura.xml -targetdir:./TestResults/html -reporttypes:HTML;" />
 	</Target>
 </Project>
