@@ -51,7 +51,10 @@ jobs:
               run: |
                   mkdir -p reports
                   # Copy the entire HTML report directory
-                  cp -r 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html reports/vertical-min-test-results
+                  cp -r 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/* reports/vertical-min-test-results/
+
+                  # Copy the CSS file to the root of the deployment directory
+                  cp reports/vertical-min-test-results/report.css reports/report.css
 
                   # Rename main index.html
                   mv reports/vertical-min-test-results/index.html reports/vertical-min-test-results.html
