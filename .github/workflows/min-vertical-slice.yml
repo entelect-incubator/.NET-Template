@@ -20,13 +20,13 @@ jobs:
                       9.x
                   include-prerelease: true
             - name: Install dependencies
-              run: dotnet restore "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln"
+              run: dotnet restore "$(Build.ArtifactStagingDirectory)/.NET.VerticalSliceArchitecture.Minimum.sln"
             - name: Build
-              run: dotnet build "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
+              run: dotnet build "$(Build.ArtifactStagingDirectory)/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
             # Run the tests and collect code coverage
             - name: Run Tests and Collect Code Coverage
               run: |
-                  dotnet test 3.VerticalSliceArchitecture/2.Minimum/Test/Test.csproj --no-build --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="$(Build.ArtifactStagingDirectory)/TestResults/" /p:IsBenchmarkProject=false /p:Configuration=Release --verbosity detailed
+                  dotnet test $(Build.ArtifactStagingDirectory)/Test/Test.csproj --no-build --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="$(Build.ArtifactStagingDirectory)/Test/TestResults/" /p:IsBenchmarkProject=false /p:Configuration=Release --verbosity detailed
 
             # Install ReportGenerator (if necessary)
             - name: Install ReportGenerator
@@ -36,18 +36,18 @@ jobs:
             # Generate HTML report from Cobertura XML
             - name: Generate HTML Coverage Report
               run: |
-                  reportgenerator "-reports:$(Build.ArtifactStagingDirectory)/TestResults/coverage.cobertura.xml" "-targetdir:$(Build.ArtifactStagingDirectory)/TestResults/html" -reporttypes:HTML
+                  reportgenerator "-reports:$(Build.ArtifactStagingDirectory)/Test/TestResults/coverage.cobertura.xml" "-targetdir:$(Build.ArtifactStagingDirectory)/Test/TestResults/html" -reporttypes:HTML
 
             # Upload coverage HTML report as artifact
             - name: Upload HTML Report Artifact
               uses: actions/upload-artifact@v4
               with:
                   name: coverage-report
-                  path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/
+                  path: $(Build.ArtifactStagingDirectory)/Test/TestResults/html/
 
             # Upload Cobertura XML as artifact (optional)
             - name: Upload Cobertura Report Artifact
               uses: actions/upload-artifact@v4
               with:
                   name: cobertura-report
-                  path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml
+                  path: $(Build.ArtifactStagingDirectory)/Test/TestResults/coverage.cobertura.xml
