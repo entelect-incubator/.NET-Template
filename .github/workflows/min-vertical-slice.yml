@@ -26,7 +26,7 @@ jobs:
             # Run the tests and collect code coverage
             - name: Run Tests and Collect Code Coverage
               run: |
-                  dotnet test 3.VerticalSliceArchitecture/2.Minimum/Test/Test.csproj --no-build --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/' /p:IsBenchmarkProject=false /p:Configuration=Release --verbosity detailed
+                  dotnet test 3.VerticalSliceArchitecture/2.Minimum/Test/Test.csproj --no-build --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/" /p:IsBenchmarkProject=false /p:Configuration=Release --verbosity detailed
 
             # Install ReportGenerator (if necessary)
             - name: Install ReportGenerator
