@@ -21,6 +21,6 @@ jobs:
           9.x
         include-prerelease: true
     - name: Install dependencies
-      run: dotnet restore "./3.VerticalSliceArchitecture/1. Traditional/.NET.VerticalSliceArchitecture.sln"
+      run: dotnet restore "./3.VerticalSliceArchitecture/1.Traditional/.NET.VerticalSliceArchitecture.sln"
     - name: Build
-      run: dotnet build "./3.VerticalSliceArchitecture/1. Traditional/.NET.VerticalSliceArchitecture.sln" --configuration Release --no-restore
+      run: dotnet build "./3.VerticalSliceArchitecture/1.Traditional/.NET.VerticalSliceArchitecture.sln" --configuration Release --no-restore
