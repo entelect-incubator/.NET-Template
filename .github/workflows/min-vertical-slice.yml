@@ -59,3 +59,10 @@ jobs:
               with:
                   name: cobertura-report
                   path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html
+                  publish_branch: gh-pages
