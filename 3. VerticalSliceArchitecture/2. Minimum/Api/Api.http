@@ -1,6 +1,30 @@
-@Farris.Api_HostAddress = http://localhost:5127
+@Api_HostAddress = http://localhost:5127
 
-GET {{Farris.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Create Pizza
+POST {{Api_HostAddress}}/pizzas
+Content-Type: application/json
 
-###
+{
+  "name": "Margherita",
+  "ingredients": ["Tomato", "Mozzarella", "Basil"],
+  "price": 8.99
+}
+
+### Search Pizzas
+POST {{Api_HostAddress}}/pizzas/search
+Content-Type: application/json
+
+{
+  "name": "Margherita"
+}
+
+### Update Pizza
+PUT {{Api_HostAddress}}/pizzas
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Margherita Deluxe",
+  "ingredients": ["Tomato", "Mozzarella", "Basil", "Parmesan"],
+  "price": 10.99
+}

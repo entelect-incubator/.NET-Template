@@ -5,7 +5,7 @@ using Core.Pizzas.V1.Commands;
 using Core.Pizzas.V1.Models;
 using Core.Pizzas.V1.Queries;
 using Test.Setup.TestData.Pizzas.V1;
-using Utilities;
+using Common;
 
 [TestFixture]
 public class TestPizzaV1Core : QueryTestBase

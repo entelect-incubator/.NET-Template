@@ -2,7 +2,7 @@
 
 public sealed class UpdatePizzaModel
 {
-    public required string Name { get; set; }
+    public string? Name { get; set; }
 
     public bool? Disabled { get; set; }
 }

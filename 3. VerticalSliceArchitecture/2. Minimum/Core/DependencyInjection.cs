@@ -3,7 +3,7 @@ namespace Core;
 using System.Reflection;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Utilities.Behaviours;
+using Common.Behaviours;
 using Core.Pizzas.V1.Commands;
 
 public static class DependencyInjection

@@ -1,9 +1,8 @@
 namespace Core.Pizzas.V1.Queries;
 
-using Core.Pizzas.V1.Filters;
+using Core.Pizzas.V1.Database.Filters;
 using Core.Pizzas.V1.Mappers;
 using Core.Pizzas.V1.Models;
-using Utilities.Logging.Static;
 
 [BindProperties]
 public sealed class GetAllPizzasQuery : BaseSearchModel, IRequest<Result<IEnumerable<PizzaModel>>>

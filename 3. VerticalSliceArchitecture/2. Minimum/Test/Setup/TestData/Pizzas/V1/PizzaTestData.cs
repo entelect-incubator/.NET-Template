@@ -1,7 +1,7 @@
 ﻿namespace Test.Setup.TestData.Pizzas.V1;
 
 using Core.Pizzas.V1.Commands;
-using Core.Pizzas.V1.Entities.V1;
+using Core.Pizzas.V1.Database.Entities.V1;
 using Core.Pizzas.V1.Models;
 
 public static class PizzaTestData

@@ -4,7 +4,6 @@ using Core.Pizzas.V1.Commands;
 using Core.Pizzas.V1.Queries;
 using Test.Setup;
 using Test.Setup.TestData.Pizzas.V1;
-using Utilities;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net80, baseline: true)]

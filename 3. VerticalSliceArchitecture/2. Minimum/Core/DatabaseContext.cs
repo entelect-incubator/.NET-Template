@@ -1,7 +1,7 @@
 namespace Core;
 
-using Core.Pizzas.V1.DBMapping;
-using Core.Pizzas.V1.Entities.V1;
+using Core.Pizzas.V1.Database.EFMapping;
+using Core.Pizzas.V1.Database.Entities.V1;
 
 public class DatabaseContext : DbContext
 {

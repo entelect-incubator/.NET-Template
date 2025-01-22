@@ -1,4 +1,2 @@
-k6 run %cd%\Sample\add-pizza-spec.js
-pause
-k6 run %cd%\Sample\get-pizza-spec.js
+k6 run %cd%\Sample\pizzas_test.js
 pause

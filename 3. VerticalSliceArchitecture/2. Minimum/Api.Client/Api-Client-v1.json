@@ -1,5 +1,5 @@
 {
-  "x-generator": "NSwag v14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "x-generator": "NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))",
   "openapi": "3.0.0",
   "info": {
     "title": ".NET Vertical Slice Minimum Architecture API",
@@ -8,6 +8,9 @@
   "paths": {
     "/hc": {
       "get": {
+        "tags": [
+          "Health Check"
+        ],
         "operationId": "GetHc",
         "responses": {
           "200": {
@@ -18,9 +21,12 @@
     },
     "/v1/pizzassearch": {
       "post": {
-        "summary": "Search for Pizzas.",
-        "description": "Search for Pizzas and return a list of Pizzas wrapped in a Result object.",
-        "operationId": "Search for Pizzas",
+        "tags": [
+          "Pizzas"
+        ],
+        "summary": "Search",
+        "description": "Search for pizzas",
+        "operationId": "Search for pizzas",
         "requestBody": {
           "x-name": "query",
           "content": {
@@ -69,9 +75,12 @@
     },
     "/v1/pizzas": {
       "post": {
-        "summary": "Create Pizza.",
-        "description": "Create a new Pizza",
-        "operationId": "Create Pizza",
+        "tags": [
+          "Pizzas"
+        ],
+        "summary": "Create",
+        "description": "Create a new pizza",
+        "operationId": "Create a pizza",
         "requestBody": {
           "x-name": "command",
           "content": {
@@ -101,6 +110,68 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ValidationErrorResult"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pizzas"
+        ],
+        "summary": "Update",
+        "description": "Update existing pizza",
+        "operationId": "Update pizza",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePizzaCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfPizzaModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorResult"
                 }
               }
             }
@@ -377,6 +448,49 @@
         "properties": {
           "Name": {
             "type": "string"
+          }
+        }
+      },
+      "NotFoundErrorResult": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Result"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "IsNotFound": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        ]
+      },
+      "UpdatePizzaCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Model": {
+            "$ref": "#/components/schemas/UpdatePizzaModel"
+          }
+        }
+      },
+      "UpdatePizzaModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Disabled": {
+            "type": "boolean",
+            "nullable": true
           }
         }
       }

@@ -1,2 +1,1 @@
-global using Microsoft.AspNetCore.Mvc;
-global using Utilities.Logging.Static;
+global using Common.Logging.Static;

@@ -1,4 +1,8 @@
-﻿global using FluentValidation;
+﻿global using Common.Extensions;
+global using Common.Helpers;
+global using Common.Logging.Static;
+global using Common.Models;
+global using FluentValidation;
 global using MediatR;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Http;
@@ -7,6 +11,3 @@ global using Microsoft.AspNetCore.Routing;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using NSwag.Annotations;
-global using Utilities.Extensions;
-global using Utilities.Helpers;
-global using Utilities.Models;

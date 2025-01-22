@@ -1,6 +1,6 @@
 namespace Api;
 
-using Core;
+using Common.Logging.Static;
 using OpenTelemetry.Logs;
 using Serilog;
 
