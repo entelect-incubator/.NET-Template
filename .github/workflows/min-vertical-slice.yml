@@ -47,14 +47,14 @@ jobs:
 
     # Upload coverage HTML report as artifact
     - name: Upload HTML Report Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: coverage-report
         path: ./TestResults/html/
 
     # Upload Cobertura XML as artifact (optional)
     - name: Upload Cobertura Report Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: cobertura-report
         path: ./TestResults/coverage.cobertura.xml
