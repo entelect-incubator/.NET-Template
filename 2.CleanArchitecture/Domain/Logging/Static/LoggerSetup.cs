@@ -25,8 +25,8 @@ public static class LoggerSetup
             .Enrich.WithProperty("logger_name", LoggingConfig.Current.SolutionName)
             .Enrich.WithProperty("machine_name", Environment.MachineName)
             .Enrich.WithProperty("application_name", LoggingConfig.Current.SolutionName)
-            .Enrich.WithProperty("thread_id", Thread.CurrentThread.ManagedThreadId.ToString())
-            .Enrich.WithProperty("process_id", Process.GetCurrentProcess().Id.ToString())
+            .Enrich.WithProperty("thread_id", Environment.CurrentManagedThreadId.ToString())
+            .Enrich.WithProperty("process_id", Environment.ProcessId.ToString())
 
             // Can this be null?
             // .Enrich.WithProperty("process_user_id", WindowsIdentity.GetCurrent().Name)
@@ -35,19 +35,19 @@ public static class LoggerSetup
 
             // Can this be null?
             // .Enrich.WithProperty("user_id", WindowsIdentity.GetCurrent().Name)
-            .MinimalLevel.Information()
-            .MinimalLevel.Override("System", LogEventLevel.Error)
-            .MinimalLevel.Override("Microsoft", LogEventLevel.Error);
+            .MinimumLevel.Information()
+            .MinimumLevel.Override("System", LogEventLevel.Error)
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Error);
 
         if (LoggingConfig.Current.IncludeDebugLogs)
         {
-            LoggingConfiguration.MinimalLevel.Debug();
+            LoggingConfiguration.MinimumLevel.Debug();
         }
 
         if (LoggingConfig.Current.IncludeSystemInfoLogs)
         {
-            LoggingConfiguration.MinimalLevel.Override("System", LogEventLevel.Information);
-            LoggingConfiguration.MinimalLevel.Override("Microsoft", LogEventLevel.Information);
+            LoggingConfiguration.MinimumLevel.Override("System", LogEventLevel.Information);
+            LoggingConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Information);
         }
 
         if (StartupSettings.Current.IncludeCorrelationId)
