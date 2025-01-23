@@ -25,7 +25,7 @@
 </tr>
 <tr>
 <th>File(s):</th>
-<td class="overflow-wrap"><a href="#homerunnerworkNETTemplateNETTemplate3VerticalSliceArchitecture2MinimumCorePizzasV1EndpointsSearchPizzaEndpointcs" class="navigatetohash">/home/runner/work/.NET-Template/.NET-Template/3.VerticalSliceArchitecture/2.Minimum/Core/Pizzas/V1/Endpoints/SearchPizzaEndpoint.cs</a></td>
+<td class="overflow-wrap"><a href="#homerunnerworkNETTemplateNETTemplate3VerticalSliceArchitecture2MinimalCorePizzasV1EndpointsSearchPizzaEndpointcs" class="navigatetohash">/home/runner/work/.NET-Template/.NET-Template/3.VerticalSliceArchitecture/2.Minimal/Core/Pizzas/V1/Endpoints/SearchPizzaEndpoint.cs</a></td>
 </tr>
 </table>
 </div>
@@ -113,7 +113,7 @@
 </table>
 </div>
 <h1>File(s)</h1>
-<h2 id="homerunnerworkNETTemplateNETTemplate3VerticalSliceArchitecture2MinimumCorePizzasV1EndpointsSearchPizzaEndpointcs">/home/runner/work/.NET-Template/.NET-Template/3.VerticalSliceArchitecture/2.Minimum/Core/Pizzas/V1/Endpoints/SearchPizzaEndpoint.cs</h2>
+<h2 id="homerunnerworkNETTemplateNETTemplate3VerticalSliceArchitecture2MinimalCorePizzasV1EndpointsSearchPizzaEndpointcs">/home/runner/work/.NET-Template/.NET-Template/3.VerticalSliceArchitecture/2.Minimal/Core/Pizzas/V1/Endpoints/SearchPizzaEndpoint.cs</h2>
 <div class="table-responsive">
 <table class="lineAnalysis">
 <thead><tr><th></th><th>#</th><th>Line</th><th></th><th>Line coverage</th></tr></thead>
@@ -131,7 +131,7 @@
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line11"></a><code>11</code></td><td></td><td class="lightgray"><code>&nbsp;&nbsp;&nbsp;&nbsp;[ProducesResponseType(typeof(ErrorResult),&nbsp;StatusCodes.Status500InternalServerError)]</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line12"></a><code>12</code></td><td></td><td class="lightgray"><code>&nbsp;&nbsp;&nbsp;&nbsp;[OpenApiOperation(&quot;Search&quot;,&nbsp;&quot;Search&nbsp;for&nbsp;pizzas&quot;)]</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line13"></a><code>13</code></td><td></td><td class="lightgray"><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;async&nbsp;Task&lt;IResult&gt;&nbsp;Search([FromBody]&nbsp;GetAllPizzasQuery&nbsp;query,&nbsp;IMediator&nbsp;mediator,&nbsp;CancellationToken&nbsp;c</code></td></tr>
-<tr class="coverableline" title="Not covered (0 visits)" data-coverage="{'AllTestMethods': {'VC': '0', 'LVS': 'red'}}"><td class="red">&nbsp;</td><td class="leftmargin rightmargin right">0</td><td class="rightmargin right"><a id="file0_line14"></a><code>14</code></td><td></td><td class="lightred"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;ApiMinimumResultHelper.Outcome(await&nbsp;mediator.Send(query,&nbsp;cancellationToken));</code></td></tr>
+<tr class="coverableline" title="Not covered (0 visits)" data-coverage="{'AllTestMethods': {'VC': '0', 'LVS': 'red'}}"><td class="red">&nbsp;</td><td class="leftmargin rightmargin right">0</td><td class="rightmargin right"><a id="file0_line14"></a><code>14</code></td><td></td><td class="lightred"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;ApiMinimalResultHelper.Outcome(await&nbsp;mediator.Send(query,&nbsp;cancellationToken));</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line15"></a><code>15</code></td><td></td><td class="lightgray"><code></code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line16"></a><code>16</code></td><td></td><td class="lightgray"><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;MapEndpoints(IEndpointRouteBuilder&nbsp;app)</code></td></tr>
 <tr class="coverableline" title="Not covered (0 visits)" data-coverage="{'AllTestMethods': {'VC': '0', 'LVS': 'red'}}"><td class="red">&nbsp;</td><td class="leftmargin rightmargin right">0</td><td class="rightmargin right"><a id="file0_line17"></a><code>17</code></td><td></td><td class="lightred"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;app.MapPost($&quot;{Config.ENDPOINT}search&quot;,&nbsp;Search).WithTags(Config.TAG).WithName(&quot;Search&nbsp;for&nbsp;pizzas&quot;);</code></td></tr>
@@ -139,7 +139,7 @@
 </tbody>
 </table>
 </div>
-<div class="footer">Generated by: ReportGenerator 5.4.3.0<br />01/22/2025 - 10:58:44<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div>
+<div class="footer">Generated by: ReportGenerator 5.4.3.0<br />01/23/2025 - 17:15:52<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div>
 <div class="containerright">
 <div class="containerrightfixed">
 <h1>Methods/Properties</h1>

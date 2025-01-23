@@ -228,7 +228,7 @@ var assemblies = [
       { "name": "Common.Extensions.EnumExtensions", "rp": "Common_EnumExtensions.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 51, "cb": 0, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Common.Extensions.Extensions", "rp": "Common_Extensions.html", "cl": 3, "ucl": 13, "cal": 16, "tl": 54, "cb": 2, "tb": 16, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Common.Helpers.ActionHelper", "rp": "Common_ActionHelper.html", "cl": 5, "ucl": 4, "cal": 9, "tl": 27, "cb": 6, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Common.Helpers.ApiMinimumResultHelper", "rp": "Common_ApiMinimumResultHelper.html", "cl": 0, "ucl": 13, "cal": 13, "tl": 24, "cb": 0, "tb": 18, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Common.Helpers.ApiMinimalResultHelper", "rp": "Common_ApiMinimalResultHelper.html", "cl": 0, "ucl": 13, "cal": 13, "tl": 24, "cb": 0, "tb": 18, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Common.Models.BaseSearchModel", "rp": "Common_BaseSearchModel.html", "cl": 1, "ucl": 3, "cal": 4, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Common.Models.Naming", "rp": "Common_Naming.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 6, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Common.Providers.DateTimeOffSetProvider.DateTimeOffsetProvider", "rp": "Common_DateTimeOffsetProvider.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 17, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -278,7 +278,7 @@ var riskHotspotMetrics = [
 
 var riskHotspots = [
   {
-    "assembly": "Common", "class": "Common.Helpers.ApiMinimumResultHelper", "reportPath": "Common_ApiMinimumResultHelper.html", "methodName": "Outcome(Common.Models.Result`1<T>)", "methodShortName": "Outcome(...)", "fileIndex": 0, "line": 9,
+    "assembly": "Common", "class": "Common.Helpers.ApiMinimalResultHelper", "reportPath": "Common_ApiMinimalResultHelper.html", "methodName": "Outcome(Common.Models.Result`1<T>)", "methodShortName": "Outcome(...)", "fileIndex": 0, "line": 9,
     "metrics": [
       { "value": 156, "exceeded": true },
       { "value": 12, "exceeded": false },
@@ -308,7 +308,7 @@ var riskHotspots = [
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Common", "class": "Common.Helpers.ApiMinimumResultHelper", "reportPath": "Common_ApiMinimumResultHelper.html", "methodName": "Outcome(Common.Models.Result)", "methodShortName": "Outcome(...)", "fileIndex": 0, "line": 18,
+    "assembly": "Common", "class": "Common.Helpers.ApiMinimalResultHelper", "reportPath": "Common_ApiMinimalResultHelper.html", "methodName": "Outcome(Common.Models.Result)", "methodShortName": "Outcome(...)", "fileIndex": 0, "line": 18,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
