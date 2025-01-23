@@ -9,7 +9,7 @@ using Serilog.Events;
 [ExcludeFromCodeCoverage]
 public static class LoggerSetup
 {
-    public static LoggerConfiguration LoggingConfiguration;
+    private static LoggerConfiguration LoggingConfiguration;
 
     public static LoggerConfiguration ConfigureLogging(IServiceProvider? services = null)
     {

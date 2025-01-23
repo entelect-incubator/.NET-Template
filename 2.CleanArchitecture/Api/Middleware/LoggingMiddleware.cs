@@ -5,17 +5,13 @@ using Domain.Models.Shared;
 using FluentValidation;
 
 [ExcludeFromCodeCoverage]
-public class LoggingMiddleware
+public class LoggingMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate next;
-
-    public LoggingMiddleware(RequestDelegate next) => this.next = next;
-
     public async Task Invoke(HttpContext context)
     {
         try
         {
-            await this.next(context);
+            await next(context);
         }
         catch (OperationCanceledException operationCanceledException)
         {
@@ -34,9 +30,9 @@ public class LoggingMiddleware
         }
     }
 
-    private static Task HandleValidationExceptionAsync(HttpContext context, Exception exception)
+    private static Task HandleValidationExceptionAsync(HttpContext context, ValidationException exception)
     {
-        var errors = ((ValidationException)exception).Errors;
+        var errors = exception.Errors;
         if (errors.Any())
         {
             var failures = errors.ToLookup(o => o.PropertyName.Replace("Data.", string.Empty), o => o.ErrorMessage.Replace("Data ", string.Empty));
@@ -61,7 +57,7 @@ public class LoggingMiddleware
         }
     }
 
-    private static Task HandleOperationCanceledExceptionAsync(HttpContext context, Exception exception)
+    private static Task HandleOperationCanceledExceptionAsync(HttpContext context, OperationCanceledException exception)
     {
         var result = JsonSerializer.Serialize(new { succeeded = false, errors = new List<object> { exception.Message } });
         context.Response.ContentType = "application/json";
@@ -78,15 +74,5 @@ public class LoggingMiddleware
         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
         return context.Response.WriteAsync(resultJson);
-    }
-
-    private static async Task<string> FormatRequest(HttpRequest request)
-    {
-        request.EnableBuffering();
-        var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-        await request.Body.ReadAsync(buffer);
-        var bodyAsText = Encoding.UTF8.GetString(buffer);
-        request.Body.Position = 0;
-        return bodyAsText;
     }
 }

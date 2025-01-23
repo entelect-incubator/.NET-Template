@@ -1,6 +1,5 @@
 namespace Test.Setup;
 
-using global::Infrastructure;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 

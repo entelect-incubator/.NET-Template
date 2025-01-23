@@ -21,7 +21,11 @@ public static class EnumExtensions
             if (field.GetCustomAttributes(typeof(DescriptionAttribute), false).Length > 0
                 && string.Equals(((DescriptionAttribute)field.GetCustomAttributes(typeof(DescriptionAttribute), false)[0]).Description, description))
             {
-                return (T)field.GetValue(null);
+                var value = field.GetValue(null);
+                if (value is not null)
+                {
+                    return (T)value;
+                }
             }
         }
 

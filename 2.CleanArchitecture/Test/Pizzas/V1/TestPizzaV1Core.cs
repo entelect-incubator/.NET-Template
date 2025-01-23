@@ -23,7 +23,7 @@ public class TestPizzaV1Core : QueryTestBase
             .Build();
 
         configuration.Bind("Settings", new Settings());
-        this.databaseContext = this.Context;
+        this.databaseContext = Context;
         var sutCreate = new CreatePizzaCommandHandler(this.databaseContext);
         var resultCreate = await sutCreate.Handle(PizzaTestData.Create, CancellationToken.None);
 

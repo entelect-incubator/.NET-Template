@@ -9,7 +9,7 @@ using Serilog.Events;
 [ExcludeFromCodeCoverage]
 public static class LoggerSetup
 {
-    public static LoggerConfiguration LoggingConfiguration;
+    private static LoggerConfiguration LoggingConfiguration;
 
     public static LoggerConfiguration ConfigureLogging(IServiceProvider? services = null)
     {
@@ -25,8 +25,8 @@ public static class LoggerSetup
             .Enrich.WithProperty("logger_name", LoggingConfig.Current.SolutionName)
             .Enrich.WithProperty("machine_name", Environment.MachineName)
             .Enrich.WithProperty("application_name", LoggingConfig.Current.SolutionName)
-            .Enrich.WithProperty("thread_id", Thread.CurrentThread.ManagedThreadId.ToString())
-            .Enrich.WithProperty("process_id", Process.GetCurrentProcess().Id.ToString())
+            .Enrich.WithProperty("thread_id", Environment.CurrentManagedThreadId.ToString())
+            .Enrich.WithProperty("process_id", Environment.ProcessId.ToString())
 
             // Can this be null?
             // .Enrich.WithProperty("process_user_id", WindowsIdentity.GetCurrent().Name)

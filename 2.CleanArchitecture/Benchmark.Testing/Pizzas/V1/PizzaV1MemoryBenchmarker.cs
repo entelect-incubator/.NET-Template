@@ -27,12 +27,12 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
     [Benchmark]
     public async Task TestCreate()
     {
-        var sutCreate = new CreatePizzaCommandHandler(this.Context);
+        var sutCreate = new CreatePizzaCommandHandler(Context);
         var resultCreate = await sutCreate.Handle(PizzaTestData.Create, CancellationToken.None);
 
         if (!resultCreate.IsError)
         {
-            var sutGet = new GetPizzaQueryHandler(this.Context);
+            var sutGet = new GetPizzaQueryHandler(Context);
             var resultGet = await sutGet.Handle(new GetPizzaQuery { Id = resultCreate.Data.Id }, CancellationToken.None);
         }
     }
@@ -40,12 +40,12 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
     [Benchmark]
     public async Task TestGet()
     {
-        var sutCreate = new CreatePizzaCommandHandler(this.Context);
+        var sutCreate = new CreatePizzaCommandHandler(Context);
         var resultCreate = await sutCreate.Handle(PizzaTestData.Create, CancellationToken.None);
 
         if (!resultCreate.IsError)
         {
-            var sutGet = new GetPizzaQueryHandler(this.Context);
+            var sutGet = new GetPizzaQueryHandler(Context);
             var resultGet = await sutGet.Handle(new GetPizzaQuery { Id = resultCreate.Data.Id }, CancellationToken.None);
         }
     }
@@ -53,12 +53,12 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
     [Benchmark]
     public async Task TestUpdate()
     {
-        var sutCreate = new CreatePizzaCommandHandler(this.Context);
+        var sutCreate = new CreatePizzaCommandHandler(Context);
         var resultCreate = await sutCreate.Handle(PizzaTestData.Create, CancellationToken.None);
 
         if (!resultCreate.IsError)
         {
-            var sutUpdate = new UpdatePizzaCommandHandler(this.Context);
+            var sutUpdate = new UpdatePizzaCommandHandler(Context);
             var resultUpdate = await sutUpdate.Handle(
                 new UpdatePizzaCommand
                 {
@@ -74,13 +74,13 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
     [Benchmark]
     public async Task TestDelete()
     {
-        var sutCreate = new CreatePizzaCommandHandler(this.Context);
+        var sutCreate = new CreatePizzaCommandHandler(Context);
         var resultCreate = await sutCreate.Handle(PizzaTestData.Create, CancellationToken.None);
 
         if (!resultCreate.IsError)
         {
 
-            var sutDelete = new DeletePizzaCommandHandler(this.Context);
+            var sutDelete = new DeletePizzaCommandHandler(Context);
             var outcomeDelete = await sutDelete.Handle(
                 new DeletePizzaCommand
                 {
