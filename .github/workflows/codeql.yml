@@ -43,7 +43,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x' # Ensures .NET 9.0 is installed
-          cache: 'local'
+          cache: 'true'
 
       - name: Validate .NET SDK Installation
         run: dotnet --info
