@@ -9,7 +9,7 @@ on:
   push:
     branches:
       - "master"
-      - "main" # Added "main" branch in case it is used
+      - "main"
   pull_request:
     branches:
       - "master"
@@ -38,6 +38,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x' # Ensures .NET 9.0 is installed
+          cache: 'local'
+
+      - name: Validate .NET SDK Installation
+        run: dotnet --info
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
