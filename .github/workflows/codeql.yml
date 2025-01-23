@@ -43,10 +43,10 @@ jobs:
         run: dotnet --list-sdks
 
       - name: Restore dependencies
-        run: dotnet restore 1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln
+        run: dotnet restore "1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln"
 
       - name: Build the solution
-        run: dotnet build 1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln --no-restore --configuration Release
+        run: dotnet build "1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln" --no-restore --configuration Release
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
