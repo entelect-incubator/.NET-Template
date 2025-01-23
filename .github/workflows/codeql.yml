@@ -53,11 +53,7 @@ jobs:
           languages: ${{ matrix.language }}
           # Uncomment and configure queries as needed:
           # queries: +security-extended,security-and-quality
-
-      # Attempts to automatically build the code for compiled languages.
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
-
+          
       # If Autobuild fails, use the following manual build process:
       # - run: |
       #     echo "Manually building the project"
