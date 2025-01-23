@@ -20,7 +20,7 @@ permissions:
 jobs:
   analyze:
     name: Analyze CodeQL
-    runs-on: ${{ matrix.language == 'swift' && 'macos-latest' || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 360
 
     strategy:
@@ -32,16 +32,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup .NET SDK
+      - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Verify .NET SDK Installation
+        run: dotnet --list-sdks
 
       - name: Restore dependencies
         run: dotnet restore "1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln"
 
       - name: Build the solution
-        run: dotnet build "1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln" --no-restore --configuration Release --output build_output
+        run: dotnet build "1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln" --no-restore --configuration Release
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
