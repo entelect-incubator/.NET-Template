@@ -23,6 +23,10 @@ jobs:
     runs-on: ${{ matrix.language == 'swift' && 'macos-latest' || 'ubuntu-latest' }}
     timeout-minutes: 360
 
+    permissions:
+      security-events: write
+      actions: read
+
     strategy:
       fail-fast: false
       matrix:
@@ -48,9 +52,9 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: csharp
+          languages: ${{ matrix.language }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-          category: "/language:csharp"
+          category: ${{ matrix.language }}
