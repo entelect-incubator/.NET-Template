@@ -1,8 +1,3 @@
-# This workflow performs CodeQL analysis on your repository.
-# It is configured to analyze C# by default but can be extended for other languages.
-#
-# Learn more about CodeQL workflows at https://docs.github.com/en/code-security/code-scanning
-
 name: "CodeQL"
 
 on:
@@ -15,7 +10,7 @@ on:
       - "master"
       - "main"
   schedule:
-    - cron: "33 22 * * 6" # Weekly on Saturdays at 22:33 UTC
+    - cron: "33 22 * * 6"
 
 permissions:
   actions: read
@@ -26,14 +21,12 @@ jobs:
   analyze:
     name: Analyze CodeQL
     runs-on: ${{ matrix.language == 'swift' && 'macos-latest' || 'ubuntu-latest' }}
-    timeout-minutes: ${{ matrix.language == 'swift' && 120 || 360 }}
+    timeout-minutes: 360
 
     strategy:
       fail-fast: false
       matrix:
         language: [ 'csharp' ]
-        # Supported CodeQL languages: ['cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift']
-        # Learn more about CodeQL language support: https://aka.ms/codeql-docs/language-support
 
     steps:
       - name: Checkout repository
@@ -42,22 +35,18 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x' # Ensures .NET 9.0 is installed
+          dotnet-version: '8.0.x'
 
-      - name: Validate .NET SDK Installation
-        run: dotnet --info
+      - name: Restore dependencies
+        run: dotnet restore path/to/YourSolution.sln
+
+      - name: Build the solution
+        run: dotnet build path/to/YourSolution.sln --no-restore --configuration Release --output build_output
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-          # Uncomment and configure queries as needed:
-          # queries: +security-extended,security-and-quality
-          
-      # If Autobuild fails, use the following manual build process:
-      # - run: |
-      #     echo "Manually building the project"
-      #     ./path_to_build_script/buildscript.sh
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
