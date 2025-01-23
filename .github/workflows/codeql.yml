@@ -38,7 +38,7 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore path/to/YourSolution.sln
+        run: dotnet 1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln
 
       - name: Build the solution
         run: dotnet build 1.LayeredArchitecture/1. CleanTemplate/.NET.LayerdArchitecture.sln --no-restore --configuration Release --output build_output
