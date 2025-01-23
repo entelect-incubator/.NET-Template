@@ -1,4 +1,4 @@
-name: Vertical Slice Minimum Architecture
+name: Vertical Slice Minimal Architecture
 
 on:
     push:
@@ -20,16 +20,16 @@ jobs:
                       9.x
                   include-prerelease: true
             - name: Install dependencies
-              run: dotnet restore "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln"
+              run: dotnet restore "./3.VerticalSliceArchitecture/2.Minimal/.NET.VerticalSliceArchitecture.Minimal.sln"
             - name: Build
-              run: dotnet build "./3.VerticalSliceArchitecture/2.Minimum/.NET.VerticalSliceArchitecture.Minimum.sln" --configuration Release --no-restore
+              run: dotnet build "./3.VerticalSliceArchitecture/2.Minimal/.NET.VerticalSliceArchitecture.Minimal.sln" --configuration Release --no-restore
             # Run the tests and collect code coverage
             - name: Run Tests and Collect Code Coverage
               run: |
-                  dotnet test 3.VerticalSliceArchitecture/2.Minimum/Test/Test.csproj --no-build --collect:'XPlat Code Coverage' \
+                  dotnet test 3.VerticalSliceArchitecture/2.Minimal/Test/Test.csproj --no-build --collect:'XPlat Code Coverage' \
                     /p:CollectCoverage=true \
                     /p:CoverletOutputFormat=cobertura \
-                    /p:CoverletOutput="3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/" \
+                    /p:CoverletOutput="3.VerticalSliceArchitecture/2.Minimal/Test/TestResults/" \
                     /p:IsBenchmarkProject=false \
                     /p:Configuration=Release \
                     --verbosity detailed
@@ -42,8 +42,8 @@ jobs:
             # Generate HTML report from Cobertura XML
             - name: Generate HTML Coverage Report
               run: |
-                  reportgenerator "-reports:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/*/coverage.cobertura.xml" \
-                    "-targetdir:3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html" \
+                  reportgenerator "-reports:3.VerticalSliceArchitecture/2.Minimal/Test/TestResults/*/coverage.cobertura.xml" \
+                    "-targetdir:3.VerticalSliceArchitecture/2.Minimal/Test/TestResults/html" \
                     -reporttypes:Html
 
             # Rename report index.html and create main index.html
@@ -52,7 +52,7 @@ jobs:
                   mkdir -p reports
                   mkdir -p reports/vertical-min-test-results
                   # Copy the entire HTML report directory
-                  cp -r 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/* reports/vertical-min-test-results/
+                  cp -r 3.VerticalSliceArchitecture/2.Minimal/Test/TestResults/html/* reports/vertical-min-test-results/
 
                   # Copy the CSS file to the root of the deployment directory
                   cp reports/vertical-min-test-results/report.css reports/report.css
@@ -65,7 +65,7 @@ jobs:
                   echo "<html><head><title>Test Reports</title></head><body>" >> reports/index.html
                   echo "<h1>Test Reports</h1>" >> reports/index.html
                   echo "<ul>" >> reports/index.html
-                  echo "<li><a href='vertical-min-test-results.html'>Vertical Slice Minimum Test Results</a></li>" >> reports/index.html
+                  echo "<li><a href='vertical-min-test-results.html'>Vertical Slice Minimal Test Results</a></li>" >> reports/index.html
                   echo "</ul>" >> reports/index.html
                   echo "</body></html>" >> reports/index.html
 
@@ -74,14 +74,14 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: coverage-report
-                  path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/html/
+                  path: 3.VerticalSliceArchitecture/2.Minimal/Test/TestResults/html/
 
             # Upload Cobertura XML as artifact (optional)
             - name: Upload Cobertura Report Artifact
               uses: actions/upload-artifact@v4
               with:
                   name: cobertura-report
-                  path: 3.VerticalSliceArchitecture/2.Minimum/Test/TestResults/coverage.cobertura.xml
+                  path: 3.VerticalSliceArchitecture/2.Minimal/Test/TestResults/coverage.cobertura.xml
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3

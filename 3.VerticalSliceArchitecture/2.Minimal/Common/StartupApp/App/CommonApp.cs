@@ -80,6 +80,6 @@ public static class CommonApp
 
     private static string GetHomePageHtml(string title) => "<!DOCTYPE HTML><html>" +
             $"<head><meta name='viewport' content='width=device-width'/><title>{title}</title></head>" +
-            "<body><div style='text-align:center;margin-top:15%;font-family:Arial'>.NET Vertical Slice Minimum API Template</div></body>" +
+            "<body><div style='text-align:center;margin-top:15%;font-family:Arial'>.NET Vertical Slice Minimal API Template</div></body>" +
             "</html>";
 }

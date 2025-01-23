@@ -12,7 +12,7 @@ public static class UpdatePizzaEndpoint
     [ProducesResponseType(typeof(ErrorResult), StatusCodes.Status500InternalServerError)]
     [OpenApiOperation("Update", "Update existing pizza")]
     public static async Task<IResult> Update([FromBody] UpdatePizzaCommand command, IMediator mediator, CancellationToken cancellationToken)
-        => ApiMinimumResultHelper.Outcome(await mediator.Send(command, cancellationToken));
+        => ApiMinimalResultHelper.Outcome(await mediator.Send(command, cancellationToken));
 
     public static void MapEndpoints(IEndpointRouteBuilder app)
         => app.MapPut($"{Config.ENDPOINT}", Update).WithTags(Config.TAG).WithName("Update pizza");

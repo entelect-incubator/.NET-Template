@@ -1,10 +1,10 @@
-# Vertical Slice Minimum Template
+# Vertical Slice Minimal Template
 
-[![Vertical Slice Minimum Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml)
+[![Vertical Slice Minimal Architecture](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml/badge.svg)](https://github.com/entelect-incubator/.NET-Template/actions/workflows/min-vertical-slice.yml)
 
 <br/>
 
-Vertical Slice Minimum Architecture, often associated with Domain-Driven Design and microservices, advocates for building end-to-end slices of functionality across all layers of the application stack. Unlike traditional horizontal layering, this approach emphasizes delivering a full, working feature set through the entire technology stack. Vertical Slice Architecture fosters a holistic understanding of business features, encourages cross-functional collaboration, and accelerates iterative development by providing a complete user experience with each implemented slice. This methodology promotes rapid feedback loops, enabling teams to iterate quickly and deliver value incrementally.
+Vertical Slice Minimal Architecture, often associated with Domain-Driven Design and microservices, advocates for building end-to-end slices of functionality across all layers of the application stack. Unlike traditional horizontal layering, this approach emphasizes delivering a full, working feature set through the entire technology stack. Vertical Slice Architecture fosters a holistic understanding of business features, encourages cross-functional collaboration, and accelerates iterative development by providing a complete user experience with each implemented slice. This methodology promotes rapid feedback loops, enabling teams to iterate quickly and deliver value incrementally.
 
 ## Technologies
 

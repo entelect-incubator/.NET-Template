@@ -3,7 +3,7 @@ namespace Common.Helpers;
 using Common.Models;
 using Microsoft.AspNetCore.Http;
 
-public static class ApiMinimumResultHelper
+public static class ApiMinimalResultHelper
 {
     public static IResult Outcome<T>(Result<T> result)
         => result switch

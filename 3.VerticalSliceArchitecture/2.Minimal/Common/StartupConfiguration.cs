@@ -4,7 +4,7 @@ public sealed class StartupConfiguration
 {
     public OpenApi OpenApi { get; set; }
 
-    public string DisplayName { get; set; } = "Vertical Slice Minimum Api";
+    public string DisplayName { get; set; } = "Vertical Slice Minimal Api";
 
     public bool IncludeHeaderVersion { get; set; } = true;
 

@@ -11,7 +11,7 @@ public static class SearchPizzaEndpoint
     [ProducesResponseType(typeof(ErrorResult), StatusCodes.Status500InternalServerError)]
     [OpenApiOperation("Search", "Search for pizzas")]
     public static async Task<IResult> Search([FromBody] GetAllPizzasQuery query, IMediator mediator, CancellationToken cancellationToken)
-        => ApiMinimumResultHelper.Outcome(await mediator.Send(query, cancellationToken));
+        => ApiMinimalResultHelper.Outcome(await mediator.Send(query, cancellationToken));
 
     public static void MapEndpoints(IEndpointRouteBuilder app)
         => app.MapPost($"{Config.ENDPOINT}search", Search).WithTags(Config.TAG).WithName("Search for pizzas");
