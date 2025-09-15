@@ -2,8 +2,9 @@
 global using Common.Helpers;
 global using Common.Logging.Static;
 global using Common.Models;
+global using DispatchR;
+global using DispatchR.Abstractions.Send;
 global using FluentValidation;
-global using MediatR;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;

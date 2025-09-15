@@ -3,14 +3,14 @@ namespace Core.Pizzas.V1.Commands;
 using Core.Pizzas.V1.Mappers;
 using Core.Pizzas.V1.Models;
 
-public sealed class UpdatePizzaCommand : IRequest<Result<PizzaModel>>
+public sealed class UpdatePizzaCommand : IRequest<UpdatePizzaCommand, Result<PizzaModel>>
 {
     public required int Id { get; set; }
 
     public required UpdatePizzaModel Model { get; set; }
 }
 
-public struct UpdatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<UpdatePizzaCommand, Result<PizzaModel>>
+public struct UpdatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<UpdatePizzaCommand, Task<Result<PizzaModel>>>
 {
     public readonly async Task<Result<PizzaModel>> Handle(UpdatePizzaCommand request, CancellationToken cancellationToken = default)
     {

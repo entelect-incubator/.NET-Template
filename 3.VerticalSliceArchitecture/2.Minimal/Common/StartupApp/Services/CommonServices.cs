@@ -4,10 +4,10 @@ using System.Net;
 using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using Asp.Versioning;
-using Common.Behaviours;
+using Common.Behaviors;
 using Common.Models;
 using Correlate.DependencyInjection;
-using MediatR;
+using DispatchR.Abstractions.Send;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -118,7 +118,7 @@ public static class CommonServices
         services.AddHealthChecks();
 
         ////DEPENDENCY INJECTION
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
 
         services.AddOpenTelemetry()
             .ConfigureResource(resource => resource.AddService("Pezza"))

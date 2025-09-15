@@ -4,14 +4,14 @@ using Core.Pizzas.V1.Database.Entities;
 using Core.Pizzas.V1.Mappers;
 using Core.Pizzas.V1.Models;
 
-public sealed class CreatePizzaCommand : IRequest<Result<PizzaModel>>
+public sealed class CreatePizzaCommand : IRequest<CreatePizzaCommand, Result<PizzaModel>>
 {
     public required string Name { get; set; }
 }
 
-public struct CreatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<CreatePizzaCommand, Result<PizzaModel>>
+public struct CreatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<CreatePizzaCommand, Task<Result<PizzaModel>>>
 {
-    public readonly async Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken = default)
+    public readonly async Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken)
     {
         var entity = new Pizza()
         {

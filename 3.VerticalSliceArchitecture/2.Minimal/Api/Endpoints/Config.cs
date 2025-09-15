@@ -1,4 +1,4 @@
-﻿namespace Core.Pizzas.V1.Endpoints;
+﻿namespace Api.Endpoints;
 
 public static class Config
 {
