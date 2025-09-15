@@ -1,85 +1,17 @@
 {
-  "x-generator": "NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "x-generator": "NSwag v14.5.0.0 (NJsonSchema v11.4.0.0 (Newtonsoft.Json v13.0.0.0))",
   "openapi": "3.0.0",
   "info": {
     "title": ".NET Vertical Slice Minimal Architecture API",
     "version": "v1"
   },
   "paths": {
-    "/hc": {
-      "get": {
-        "tags": [
-          "Health Check"
-        ],
-        "operationId": "GetHc",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/v1/pizzassearch": {
-      "post": {
-        "tags": [
-          "Pizzas"
-        ],
-        "summary": "Search",
-        "description": "Search for pizzas",
-        "operationId": "Search for pizzas",
-        "requestBody": {
-          "x-name": "query",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllPizzasQuery"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultOfIEnumerableOfPizzaModel"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationErrorResult"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/pizzas": {
       "post": {
         "tags": [
           "Pizzas"
         ],
-        "summary": "Create",
-        "description": "Create a new pizza",
+        "summary": "Create a new pizza",
         "operationId": "Create a pizza",
         "requestBody": {
           "x-name": "command",
@@ -130,8 +62,7 @@
         "tags": [
           "Pizzas"
         ],
-        "summary": "Update",
-        "description": "Update existing pizza",
+        "summary": "Update existing pizza",
         "operationId": "Update pizza",
         "requestBody": {
           "x-name": "command",
@@ -156,22 +87,22 @@
               }
             }
           },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationErrorResult"
-                }
-              }
-            }
-          },
           "404": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFoundErrorResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResult"
                 }
               }
             }
@@ -188,11 +119,77 @@
           }
         }
       }
+    },
+    "/v1/pizzassearch": {
+      "post": {
+        "tags": [
+          "Pizzas"
+        ],
+        "summary": "Search for pizzas",
+        "operationId": "Search for pizzas",
+        "requestBody": {
+          "x-name": "query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAllPizzasQuery"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfIEnumerableOfPizzaModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResult"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hc": {
+      "get": {
+        "tags": [
+          "Health Check"
+        ],
+        "operationId": "GetHc",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "ResultOfIEnumerableOfPizzaModel": {
+      "ResultOfPizzaModel": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -203,11 +200,12 @@
             "type": "boolean"
           },
           "Data": {
-            "type": "array",
             "nullable": true,
-            "items": {
-              "$ref": "#/components/schemas/PizzaModel"
-            }
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PizzaModel"
+              }
+            ]
           },
           "Count": {
             "type": "integer",
@@ -327,6 +325,56 @@
           }
         ]
       },
+      "CreatePizzaCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ResultOfIEnumerableOfPizzaModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "IsError": {
+            "type": "boolean"
+          },
+          "IsValidationError": {
+            "type": "boolean"
+          },
+          "Data": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PizzaModel"
+            }
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ValidationErrors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "GetAllPizzasQuery": {
         "allOf": [
           {
@@ -370,9 +418,25 @@
       "SortDirection": {
         "type": "string",
         "description": "",
+        "x-enum-names": [
+          "Ascending",
+          "Descending"
+        ],
+        "x-enum-varnames": [
+          "Ascending",
+          "Descending"
+        ],
         "x-enumNames": [
           "Ascending",
           "Descending"
+        ],
+        "x-enum-descriptions": [
+          "Asc",
+          "Desc"
+        ],
+        "x-enumDescriptions": [
+          "Asc",
+          "Desc"
         ],
         "enum": [
           "Ascending",
@@ -397,57 +461,6 @@
           },
           "UsePaging": {
             "type": "boolean"
-          }
-        }
-      },
-      "ResultOfPizzaModel": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "IsError": {
-            "type": "boolean"
-          },
-          "IsValidationError": {
-            "type": "boolean"
-          },
-          "Data": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/PizzaModel"
-              }
-            ]
-          },
-          "Count": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "Message": {
-            "type": "string"
-          },
-          "Errors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "ValidationErrors": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
-      "CreatePizzaCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Name": {
-            "type": "string"
           }
         }
       },

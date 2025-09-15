@@ -14,6 +14,7 @@ public class Program
         builder.RegisterServices();
         builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter(options => options.Endpoint = new Uri("https://localhost:21007")));
         var app = builder.Build();
+
         app.RegisterMiddlewares();
         app.Run();
     }

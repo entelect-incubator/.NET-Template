@@ -1,4 +1,4 @@
-@Api_HostAddress = http://localhost:5127
+@Api_HostAddress = https://localhost:7160
 
 ### Create Pizza
 POST {{Api_HostAddress}}/pizzas
@@ -28,3 +28,12 @@ Content-Type: application/json
   "ingredients": ["Tomato", "Mozzarella", "Basil", "Parmesan"],
   "price": 10.99
 }
+
+POST {{Api_HostAddress}}/v1/pizzas
+Content-Type: application/json
+
+{
+  //CreatePizzaCommand
+}
+
+###

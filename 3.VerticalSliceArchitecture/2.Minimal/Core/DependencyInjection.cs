@@ -1,10 +1,11 @@
 namespace Core;
 
 using System.Reflection;
+using Common.Behaviors;
+using Core.Pizzas.V1.Commands;
+using DispatchR.Extensions;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Common.Behaviours;
-using Core.Pizzas.V1.Commands;
 
 public static class DependencyInjection
 {
@@ -17,7 +18,8 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreatePizzaCommand>());
+        services.AddDispatchR(typeof(CreatePizzaCommand).Assembly, withPipelines: true, withNotifications: true);
+
         services.AddHealthChecks().AddDbContextCheck<DatabaseContext>();
 
         return services;
