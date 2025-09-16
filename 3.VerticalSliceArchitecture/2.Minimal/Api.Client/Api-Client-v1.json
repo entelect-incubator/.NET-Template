@@ -6,6 +6,19 @@
     "version": "v1"
   },
   "paths": {
+    "/hc": {
+      "get": {
+        "tags": [
+          "Health Check"
+        ],
+        "operationId": "GetHc",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/v1/pizzas": {
       "post": {
         "tags": [
@@ -18,7 +31,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePizzaCommand"
+                "$ref": "#/components/schemas/CreatePizza"
               }
             }
           },
@@ -69,7 +82,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePizzaCommand"
+                "$ref": "#/components/schemas/UpdatePizza"
               }
             }
           },
@@ -132,7 +145,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllPizzasQuery"
+                "$ref": "#/components/schemas/GetAllPizzas"
               }
             }
           },
@@ -169,19 +182,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/hc": {
-      "get": {
-        "tags": [
-          "Health Check"
-        ],
-        "operationId": "GetHc",
-        "responses": {
-          "200": {
-            "description": ""
           }
         }
       }
@@ -325,7 +325,7 @@
           }
         ]
       },
-      "CreatePizzaCommand": {
+      "CreatePizza": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -375,7 +375,7 @@
           }
         }
       },
-      "GetAllPizzasQuery": {
+      "GetAllPizzas": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BaseSearchModel"
@@ -481,7 +481,7 @@
           }
         ]
       },
-      "UpdatePizzaCommand": {
+      "UpdatePizza": {
         "type": "object",
         "additionalProperties": false,
         "properties": {

@@ -27,63 +27,6 @@ namespace Farris.API.Client.Template
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.5.0.0 (NJsonSchema v11.4.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface IClient
     {
-        /// <summary>
-        /// Create a new pizza
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizzaCommand command);
-
-        /// <summary>
-        /// Create a new pizza
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        ResultOfPizzaModel Create_a_pizza(CreatePizzaCommand command);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new pizza
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizzaCommand command, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Update existing pizza
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizzaCommand command);
-
-        /// <summary>
-        /// Update existing pizza
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        ResultOfPizzaModel Update_pizza(UpdatePizzaCommand command);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update existing pizza
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizzaCommand command, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Search for pizzas
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzasQuery query);
-
-        /// <summary>
-        /// Search for pizzas
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        ResultOfIEnumerableOfPizzaModel Search_for_pizzas(GetAllPizzasQuery query);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Search for pizzas
-        /// </summary>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzasQuery query, System.Threading.CancellationToken cancellationToken);
-
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task GetHcAsync();
 
@@ -93,6 +36,63 @@ namespace Farris.API.Client.Template
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task GetHcAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Create a new pizza
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizza command);
+
+        /// <summary>
+        /// Create a new pizza
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        ResultOfPizzaModel Create_a_pizza(CreatePizza command);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Create a new pizza
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizza command, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Update existing pizza
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizza command);
+
+        /// <summary>
+        /// Update existing pizza
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        ResultOfPizzaModel Update_pizza(UpdatePizza command);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Update existing pizza
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizza command, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Search for pizzas
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzas query);
+
+        /// <summary>
+        /// Search for pizzas
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        ResultOfIEnumerableOfPizzaModel Search_for_pizzas(GetAllPizzas query);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Search for pizzas
+        /// </summary>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzas query, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -144,11 +144,87 @@ namespace Farris.API.Client.Template
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task GetHcAsync()
+        {
+            return GetHcAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual void GetHc()
+        {
+            System.Threading.Tasks.Task.Run(async () => await GetHcAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task GetHcAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "hc"
+                    urlBuilder_.Append("hc");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
         /// <summary>
         /// Create a new pizza
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizzaCommand command)
+        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizza command)
         {
             return Create_a_pizzaAsync(command, System.Threading.CancellationToken.None);
         }
@@ -157,7 +233,7 @@ namespace Farris.API.Client.Template
         /// Create a new pizza
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ResultOfPizzaModel Create_a_pizza(CreatePizzaCommand command)
+        public virtual ResultOfPizzaModel Create_a_pizza(CreatePizza command)
         {
             return System.Threading.Tasks.Task.Run(async () => await Create_a_pizzaAsync(command, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
@@ -167,7 +243,7 @@ namespace Farris.API.Client.Template
         /// Create a new pizza
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizzaCommand command, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> Create_a_pizzaAsync(CreatePizza command, System.Threading.CancellationToken cancellationToken)
         {
             if (command == null)
                 throw new System.ArgumentNullException("command");
@@ -266,7 +342,7 @@ namespace Farris.API.Client.Template
         /// Update existing pizza
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizzaCommand command)
+        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizza command)
         {
             return Update_pizzaAsync(command, System.Threading.CancellationToken.None);
         }
@@ -275,7 +351,7 @@ namespace Farris.API.Client.Template
         /// Update existing pizza
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ResultOfPizzaModel Update_pizza(UpdatePizzaCommand command)
+        public virtual ResultOfPizzaModel Update_pizza(UpdatePizza command)
         {
             return System.Threading.Tasks.Task.Run(async () => await Update_pizzaAsync(command, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
@@ -285,7 +361,7 @@ namespace Farris.API.Client.Template
         /// Update existing pizza
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizzaCommand command, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> Update_pizzaAsync(UpdatePizza command, System.Threading.CancellationToken cancellationToken)
         {
             if (command == null)
                 throw new System.ArgumentNullException("command");
@@ -394,7 +470,7 @@ namespace Farris.API.Client.Template
         /// Search for pizzas
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzasQuery query)
+        public virtual System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzas query)
         {
             return Search_for_pizzasAsync(query, System.Threading.CancellationToken.None);
         }
@@ -403,7 +479,7 @@ namespace Farris.API.Client.Template
         /// Search for pizzas
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ResultOfIEnumerableOfPizzaModel Search_for_pizzas(GetAllPizzasQuery query)
+        public virtual ResultOfIEnumerableOfPizzaModel Search_for_pizzas(GetAllPizzas query)
         {
             return System.Threading.Tasks.Task.Run(async () => await Search_for_pizzasAsync(query, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
@@ -413,7 +489,7 @@ namespace Farris.API.Client.Template
         /// Search for pizzas
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzasQuery query, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ResultOfIEnumerableOfPizzaModel> Search_for_pizzasAsync(GetAllPizzas query, System.Threading.CancellationToken cancellationToken)
         {
             if (query == null)
                 throw new System.ArgumentNullException("query");
@@ -487,82 +563,6 @@ namespace Farris.API.Client.Template
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResult>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task GetHcAsync()
-        {
-            return GetHcAsync(System.Threading.CancellationToken.None);
-        }
-
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual void GetHc()
-        {
-            System.Threading.Tasks.Task.Run(async () => await GetHcAsync(System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task GetHcAsync(System.Threading.CancellationToken cancellationToken)
-        {
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "hc"
-                    urlBuilder_.Append("hc");
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            return;
                         }
                         else
                         {
@@ -807,7 +807,7 @@ namespace Farris.API.Client.Template
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.5.0.0 (NJsonSchema v11.4.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreatePizzaCommand
+    public partial class CreatePizza
     {
 
         [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -843,7 +843,7 @@ namespace Farris.API.Client.Template
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.5.0.0 (NJsonSchema v11.4.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetAllPizzasQuery : BaseSearchModel
+    public partial class GetAllPizzas : BaseSearchModel
     {
 
         [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -910,7 +910,7 @@ namespace Farris.API.Client.Template
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.5.0.0 (NJsonSchema v11.4.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdatePizzaCommand
+    public partial class UpdatePizza
     {
 
         [Newtonsoft.Json.JsonProperty("Id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]

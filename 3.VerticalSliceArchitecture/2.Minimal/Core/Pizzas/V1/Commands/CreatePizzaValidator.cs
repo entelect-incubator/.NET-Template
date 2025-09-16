@@ -1,6 +1,6 @@
 ﻿namespace Core.Pizzas.V1.Commands;
 
-public class CreatePizzaCommandValidator : AbstractValidator<CreatePizzaCommand>
+public class CreatePizzaCommandValidator : AbstractValidator<CreatePizza>
 {
     public CreatePizzaCommandValidator()
     {

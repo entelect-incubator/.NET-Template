@@ -3,16 +3,21 @@ namespace Core.Pizzas.V1.Commands;
 using Core.Pizzas.V1.Mappers;
 using Core.Pizzas.V1.Models;
 
-public sealed class UpdatePizzaCommand : IRequest<UpdatePizzaCommand, Result<PizzaModel>>
+public sealed class UpdatePizza
 {
     public required int Id { get; set; }
 
     public required UpdatePizzaModel Model { get; set; }
 }
 
-public struct UpdatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<UpdatePizzaCommand, Task<Result<PizzaModel>>>
+public interface IUpdatePizzaCommand
 {
-    public readonly async Task<Result<PizzaModel>> Handle(UpdatePizzaCommand request, CancellationToken cancellationToken = default)
+    Task<Result<PizzaModel>> Handle(UpdatePizza request, CancellationToken cancellationToken = default);
+}
+
+public class UpdatePizzaCommand(DatabaseContext databaseContext) : IUpdatePizzaCommand
+{
+    public async Task<Result<PizzaModel>> Handle(UpdatePizza request, CancellationToken cancellationToken = default)
     {
         var model = request.Model;
         var query = EF.CompileAsyncQuery((DatabaseContext db, int id) => db.Pizzas.FirstOrDefault(c => c.Id == id));

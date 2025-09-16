@@ -4,11 +4,11 @@ using System.Net;
 using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using Asp.Versioning;
-using Common.Behaviors;
 using Common.Models;
 using Correlate.DependencyInjection;
-using DispatchR.Abstractions.Send;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,10 +28,43 @@ public static class CommonServices
 
     public static IServiceCollection AddCommon(this IServiceCollection services)
     {
+        services.AddProblemDetails(options =>
+        {
+            options.CustomizeProblemDetails = ctx =>
+            {
+                // Add a trace ID for correlation (optional but useful)
+                ctx.ProblemDetails.Extensions["traceId"] = ctx.HttpContext.TraceIdentifier;
+
+                // Optional: map common status codes to titles
+                if (ctx.ProblemDetails.Status == 500)
+                {
+                    ctx.ProblemDetails.Title = "An unexpected error occurred";
+                }
+            };
+        });
+
         services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
             .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
             .AddNewtonsoftJson(x => x.SerializerSettings.ContractResolver = new DefaultContractResolver())
-            .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+            .ConfigureApiBehaviorOptions(options =>
+            {
+                options.InvalidModelStateResponseFactory = context =>
+                {
+                    var problem = new ValidationProblemDetails(context.ModelState)
+                    {
+                        Type = "https://yourdomain/errors/validation",
+                        Title = "Validation failed",
+                        Detail = "One or more validation errors occurred.",
+                        Status = StatusCodes.Status400BadRequest
+                    };
+
+                    return new BadRequestObjectResult(problem)
+                    {
+                        ContentTypes = { "application/problem+json" }
+                    };
+                };
+            });
 
         ////Rate Limiting
         services.AddRateLimiter(options =>
@@ -86,19 +119,6 @@ public static class CommonServices
         ////FEATURE FLAGS
         services.AddFeatureManagement();
 
-        ////OPEN API
-        if (StartupSettings.Current.OpenApi.Enable)
-        {
-            services.AddOpenApiDocument(config =>
-            {
-                config.PostProcess = document =>
-                {
-                    document.Info.Version = StartupSettings.Current.OpenApi.Version;
-                    document.Info.Title = StartupSettings.Current.OpenApi.Title;
-                };
-            });
-        }
-
         ////COMMON
         services.AddLazyCache();
 
@@ -116,9 +136,6 @@ public static class CommonServices
         }
 
         services.AddHealthChecks();
-
-        ////DEPENDENCY INJECTION
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
 
         services.AddOpenTelemetry()
             .ConfigureResource(resource => resource.AddService("Pezza"))

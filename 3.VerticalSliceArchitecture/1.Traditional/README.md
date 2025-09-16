@@ -17,7 +17,8 @@ The solution template incorporates the following technologies:
 -   Rate limiting
 -   FluentValidation
 -   Polly
--   NSwag
+-   Scalar UI (for OpenAPI visualization at `/scalar`)
+-   NSwag (for API client generation)
 -   NUnit
 
 ## Getting Started

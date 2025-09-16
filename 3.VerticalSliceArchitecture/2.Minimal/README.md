@@ -20,14 +20,15 @@ Vertical Slice Architecture advocates building end-to-end slices of functionalit
 
 - .NET (latest)
 - Entity Framework Core (latest)
-- MediatR
-- FeatureManagement
-- Rate limiting
-- FluentValidation
-- Polly
-- NSwag
-- Endpoint routing
+
+- ASP.NET Core Minimal API
+- Entity Framework Core (latest)
+- FluentValidation (with endpoint filters)
+- Automatic service registration via reflection
 - Serilog
+- Scalar UI (for OpenAPI visualization at `/scalar`)
+- NSwag (for API client generation)
+- Polly
 - NUnit
 
 ## Solution Structure
@@ -83,9 +84,11 @@ dotnet run --project Benchmark.Testing/Benchmark.Testing.csproj
 
 ## Customization & Usage
 
-- Add new features by creating a folder in `Core/` and implementing your command/query, handler, and related logic. Register endpoints in `Api/Endpoints/`.
-- Use MediatR for in-process messaging and CQRS patterns.
-- Configure logging, validation, and middleware in `Common/` and `Api/Startup.cs`.
+- Add new features by creating a folder in `Core/` and implementing your command/query and service logic. Register endpoints in `Api/Endpoints/`.
+- No MediatR or dispatcher: endpoints call services directly via DI (`[FromServices]`).
+- Validation is handled automatically using FluentValidation and endpoint filters (no pipeline behaviors needed).
+- All `*Service` classes are registered automatically with their interfaces via reflection.
+- Configure logging, validation, and middleware in `Common/` and `Api/Program.cs`.
 - Update `appsettings.json` for environment-specific configuration.
 
 ## Contributing

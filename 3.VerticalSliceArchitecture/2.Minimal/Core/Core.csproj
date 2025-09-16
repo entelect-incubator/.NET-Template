@@ -16,7 +16,6 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.9" />
 		<PackageReference Include="Riok.Mapperly" Version="4.2.1" />
-        <PackageReference Include="DispatchR.Mediator" Version="2.0.0" />
 		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>

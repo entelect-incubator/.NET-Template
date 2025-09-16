@@ -6,13 +6,14 @@ using Core.Pizzas.V1.Models;
 public static class UpdatePizzaEndpoint
 {
     public static async Task<IResult> Update(
-        UpdatePizzaCommand command,
-        IMediator mediator,
+        UpdatePizza command,
+        [FromServices] IUpdatePizzaCommand updatePizzaCommand,
         CancellationToken cancellationToken)
-        => ApiMinimalResultHelper.Outcome(mediator.Send(command, cancellationToken));
+        => ApiMinimalResultHelper.Outcome(await updatePizzaCommand.Handle(command, cancellationToken));
 
     public static void MapEndpoints(this IEndpointRouteBuilder app)
         => app.MapPut($"{Config.ENDPOINT}", Update)
+            .AddEndpointFilter<ValidationFilter<UpdatePizza>>()
             .WithTags(Config.TAG)
             .WithName("Update pizza")
             .Produces<Result<PizzaModel>>(StatusCodes.Status200OK, "application/json")

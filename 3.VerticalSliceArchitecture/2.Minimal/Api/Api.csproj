@@ -12,7 +12,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
-        <PackageReference Include="DispatchR.Mediator" Version="2.0.0" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.8.3" />
     </ItemGroup>
 
     <ItemGroup>

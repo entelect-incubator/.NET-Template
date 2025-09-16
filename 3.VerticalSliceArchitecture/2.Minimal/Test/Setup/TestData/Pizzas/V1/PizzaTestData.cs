@@ -22,7 +22,7 @@ public static class PizzaTestData
         DateCreated = DateTime.Now
     };
 
-    public readonly static CreatePizzaCommand Create = new()
+    public readonly static CreatePizza Create = new()
     {
         Name = "Margherita ",
     };

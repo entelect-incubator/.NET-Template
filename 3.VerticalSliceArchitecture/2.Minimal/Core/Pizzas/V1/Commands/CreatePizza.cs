@@ -4,14 +4,19 @@ using Core.Pizzas.V1.Database.Entities;
 using Core.Pizzas.V1.Mappers;
 using Core.Pizzas.V1.Models;
 
-public sealed class CreatePizzaCommand : IRequest<CreatePizzaCommand, Result<PizzaModel>>
+public sealed class CreatePizza
 {
     public required string Name { get; set; }
 }
 
-public struct CreatePizzaCommandHandler(DatabaseContext databaseContext) : IRequestHandler<CreatePizzaCommand, Task<Result<PizzaModel>>>
+public interface ICreatePizzaCommand
 {
-    public readonly async Task<Result<PizzaModel>> Handle(CreatePizzaCommand request, CancellationToken cancellationToken)
+    Task<Result<PizzaModel>> Handle(CreatePizza request, CancellationToken cancellationToken = default);
+}
+
+public class CreatePizzaCommand(DatabaseContext databaseContext) : ICreatePizzaCommand
+{
+    public async Task<Result<PizzaModel>> Handle(CreatePizza request, CancellationToken cancellationToken = default)
     {
         var entity = new Pizza()
         {
@@ -19,6 +24,7 @@ public struct CreatePizzaCommandHandler(DatabaseContext databaseContext) : IRequ
             Disabled = false,
             DateCreated = DateTime.UtcNow
         };
+
         databaseContext.Pizzas.Add(entity);
         var outcome = await databaseContext.SaveChangesAsync(cancellationToken);
 

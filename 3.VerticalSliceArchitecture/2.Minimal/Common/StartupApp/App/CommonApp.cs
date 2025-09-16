@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Scalar.AspNetCore;
 
 public static class CommonApp
 {
@@ -19,21 +20,17 @@ public static class CommonApp
     public static IApplicationBuilder AddCommon(this WebApplication app)
     {
         ////Exception Handling and Logging
-        app.UseMiddleware<LoggingMiddleware>();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+        app.UseMiddleware<PerformanceLoggingMiddleware>();
 
         ////COMPRESSION
         app.UseResponseCompression();
-        app.UseHttpsRedirection();
 
         ////Correlation Id
         if (StartupSettings.Current.IncludeCorrelationId)
         {
             app.UseCorrelate();
         }
-
-        ////SWAGGER
-        app.UseOpenApi();
-        app.UseSwaggerUi(c => c.AdditionalSettings.Add("displayRequestDuration", true));
 
         ////COMMON
         app.UseRouting();
@@ -50,6 +47,11 @@ public static class CommonApp
             app.UseAuthorization();
         }
 
+        // Only use HTTPS redirection if not in development environment
+        // if (!app.Environment.IsDevelopment())
+        // {
+        //     app.UseHttpsRedirection();
+        // }
         app.UseEndpoints(static endpoints =>
         {
             endpoints.MapControllers();

@@ -25,15 +25,15 @@ public class PizzaV1MemoryBenchmarker : QueryTestBase
     [Benchmark]
     public async Task TestCast()
     {
-        var sutCast = new CreatePizzaCommandHandler(Context);
-        var resultCast = await sutCast.Handle(new CreatePizzaCommand()
+        var sutCast = new CreatePizzaCommand(Context);
+        var resultCast = await sutCast.Handle(new CreatePizza()
         {
             Name = PizzaTestData.Create.Name
         }, CancellationToken.None);
 
         if (!resultCast.IsError)
         {
-            var sutGet = new GetAllPizzasQueryHandler(Context);
+            var sutGet = new GetAllPizzasQuery(Context);
         }
     }
 }
